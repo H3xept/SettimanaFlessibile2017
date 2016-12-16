@@ -7,6 +7,7 @@
         <title>Settimana Flessibile Galilei PG</title>
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/font-awesome.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/bootstrap-theme.min.css') }}"/>
 
     </head>
     <body>
