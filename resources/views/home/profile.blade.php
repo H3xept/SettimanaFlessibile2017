@@ -1,7 +1,11 @@
 @extends('master')
 
 @section('navigation')
-<h1>TEST</h1>
+<a href="{{route('home')}}" class="list-group-item disabled">
+Profilo
+</a>
+<a href="#" class="list-group-item">Corsi disponibili</a>
+<a href="#" class="list-group-item">Istruzioni</a>
 @endsection
 
 

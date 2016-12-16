@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('home.profile');
-});
+})->name('home');
 
 Route::get('user', ['uses'=>'UsersController@index']);
 Route::get('user/create', ['uses'=>'UsersController@create']);
