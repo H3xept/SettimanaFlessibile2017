@@ -5,14 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Settimana Flessibile Galilei PG</title>
-        <link rel="stylesheet" type="text/css" href="{{{ asset('/css/bootstrap.min.css') }}}"/>
-        <link rel="stylesheet" type="text/css" href="{{{ asset('/css/font-awesome.min.css') }}}"/>
+        <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/font-awesome.min.css') }}"/>
 
     </head>
     <body>
         <div class="container-fluid">
-           
-            @include('partials._header',['name'=>{{$name}},'class'=>{{$class}}])  
+            <?php $name = "Orazio Grinzosi"; $class = "5L"; ?>
+             
         </div>
         
 
