@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="container-fluid">
-            <?php $name = "Orazio Grinzosi"; $class = "5L";?>
+            <?php $name = "Orazio Grinzosi"; $class = "5L"; ?>
             @include('partials._header',['name'=>{{$name}},'class'=>{{$class}}])  
         </div>
         
