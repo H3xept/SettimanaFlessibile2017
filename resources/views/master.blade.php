@@ -14,8 +14,16 @@
             <?php $name = "Orazio Grinzosi"; $class = "5L"; ?>
             @include('partials._header')  
         </div>
-        
-
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                @section('navigation')
+                @endsection
+            </div>
+            <div class="col-md-8 col-sm-12">
+                @section('content')
+                @endsection
+            </div>
+        </div>
 
         <script type="text/javascript" src="{{ URL::asset('js/jquery-3.1.1.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
