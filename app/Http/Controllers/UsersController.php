@@ -11,6 +11,9 @@ class UsersController extends Controller
 		return User::all();
 	}
 
+	public function create(){
+		return view('users.createuser');
+	}
     public function store(Request $req){
     	User::create($req->all());
     	return "Ye";
