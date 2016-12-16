@@ -10,7 +10,7 @@ Profilo
 
 
 @section('content')
-<div id="list-id" class="jumbotron contrast" align="center">
+<div id="list-id" class="jumbotron" align="center" style="	border-color: #CCCCCC;border-width: 1px;border-style:solid;">
 	<div align="left"><h3>Programmazione settimana</h3></div><hr>
   <table class="table table-hover">
   <thead>
