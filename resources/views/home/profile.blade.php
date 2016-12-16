@@ -10,5 +10,18 @@ Profilo
 
 
 @section('content')
-<h1>TEST22</h1>
+<div id="list-id" class="jumbotron" align="center">
+	<div align="left"><h3>Programmazione settimana</h3></div><hr>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Giorno</th>
+      <th>Fascia</th>
+      <th>Corso</th>
+    </tr>
+  </thead>
+
+  </tbody>
+</table>
+</div>
 @endsection
