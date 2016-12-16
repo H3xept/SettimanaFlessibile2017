@@ -17,11 +17,9 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 @section('navigation')
-                @endsection
             </div>
             <div class="col-md-8 col-sm-12">
                 @section('content')
-                @endsection
             </div>
         </div>
 
