@@ -4,34 +4,17 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Settimana Flessibile Galilei PG</title>
         <link rel="stylesheet" type="text/css" href="{{{ asset('/css/bootstrap.min.css') }}}"/>
+        <link rel="stylesheet" type="text/css" href="{{{ asset('/css/font-awesome.min.css') }}}"/>
 
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel <h1> LOL </h1> <button class="btn btn-info"></button>
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+        <div class="container-fluid">
+            <?php $name = "Orazio Grinzosi"; $class = "5L";?>
+            @include('partials._header',['name'=>{{$name}},'class'=>{{$class}}])  
         </div>
+        
 
 
         <script type="text/javascript" src="{{ URL::asset('js/jquery-3.1.1.min.js') }}"></script>
