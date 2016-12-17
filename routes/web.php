@@ -13,14 +13,14 @@
 
 Route::get('/', function () {
     return view('home.home');
-})->name('home');
+})->middleware('auth')->name('home');
 Route::get('/home', function () {
     return view('home.home');
-});//Redundant
+})->middleware('auth');//Redundant
 
 Route::get('/courses', function () {
     return view('home.courses');
-})->name('courses');
+})->middleware('auth')->name('courses');
 
 //Temporary ---------
 Route::get('/courses/create', function () {
@@ -30,3 +30,4 @@ Route::post('/storecourse',['uses'=>'CoursesController@store']);
 //Temporary ---------
 
 Auth::routes();
+
