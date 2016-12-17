@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home.profile');
+})->name('home');
+
+Route::get('user', ['uses'=>'UsersController@index']);
+Route::get('user/create', ['uses'=>'UsersController@create']);
+Route::post('/user', ['uses'=>'UsersController@store']);
