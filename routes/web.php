@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('home.profile');
+    return view('home.home');
 })->name('home');
 
 Route::get('/courses', function () {
