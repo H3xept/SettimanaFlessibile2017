@@ -12,9 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('home.profile');
+    return view('home.home');
 })->name('home');
 
-Route::get('user', ['uses'=>'UsersController@index']);
-Route::get('user/create', ['uses'=>'UsersController@create']);
-Route::post('/user', ['uses'=>'UsersController@store']);
+Route::get('/courses', function () {
+    return view('home.courses');
+})->name('courses');
+
+Route::get('/courses/create', function () {
+    return view('users.test');
+});
+Route::post('/storecourse',['uses'=>'CoursesController@store']);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
