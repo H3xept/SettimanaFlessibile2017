@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('home.home');
 })->name('home');
+Route::get('/home', function () {
+    return view('home.home');
+})//Redundant
 
 Route::get('/courses', function () {
     return view('home.courses');
