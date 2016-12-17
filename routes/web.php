@@ -30,4 +30,3 @@ Route::post('/storecourse',['uses'=>'CoursesController@store']);
 //Temporary ---------
 
 Auth::routes();
-Route::get('/home', 'HomeController@index');
