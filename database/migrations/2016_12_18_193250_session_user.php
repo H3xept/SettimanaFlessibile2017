@@ -17,6 +17,9 @@ class SessionUser extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('session_id')->unsigned();
+        });
+
+        Schema::table('session_user', function($table){
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
@@ -24,7 +27,6 @@ class SessionUser extends Migration
                 ->references('id')->on('sessions')
                 ->onDelete('cascade');
         });
-
 
     }
 
@@ -35,6 +37,6 @@ class SessionUser extends Migration
      */
     public function down()
     {
-        //
+
     }
 }
