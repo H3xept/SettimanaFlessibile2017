@@ -19,14 +19,16 @@ Route::get('/home', function () {
 })->middleware('auth');//Redundant
 
 Route::get('/courses', function () {
-    return view('home.courses');
+	$courses = DB::table('courses')->get();
+    return view('home.courses')->withCourses($courses);
 })->middleware('auth')->name('courses');
 
 //Temporary ---------
 Route::get('/courses/create', function () {
     return view('users.test');
-});
-Route::post('/storecourse',['uses'=>'CoursesController@store']);
+})->middleware('auth');
+
+Route::post('/storecourse',['uses'=>'CoursesController@store'])->middleware('auth');
 //Temporary ---------
 
 Auth::routes();

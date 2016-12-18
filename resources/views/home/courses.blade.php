@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<?php $courses = DB::table('courses')->get();
+<?php 
 
 $modifiers = array(
 	"0"=>'<i class="fa fa-ban">',
@@ -16,6 +16,11 @@ $modifiers = array(
     "3"=>'<label id="p" class="label label-info" style="user-select: none; vertical-align: middle;"><i class="fa fa-close"></i>'
 );
 
+function shouldBeDisabled($ret){
+	if($ret == 0){
+		return "disabled";
+	}else {return"";}
+}
 ?>
 
 @foreach($courses as $course)
@@ -69,22 +74,22 @@ $modifiers = array(
 					<tbody>
 						@if($course->type == 0)
 							<tr>
-							<td><input type="checkbox" id="s" name="l1" value="1" disabled="true"></td>
-							<td><input type="checkbox" id="s" name="m1" value="1" disabled="true"></td>
-							<td><input type="checkbox" id="s" name="r1" value="1" disabled="true"></td>
-							<td><input type="checkbox" id="s" name="g1" value="1"></td>
+							<td><input type="checkbox"  name="l1" value="1" disabled="true"></td>
+							<td><input type="checkbox"  name="m1" value="1" disabled="true"></td>
+							<td><input type="checkbox"  name="r1" value="1" disabled="true"></td>
+							<td><input type="checkbox"  name="g1" value="1" {{shouldBeDisabled($course->f7)}}></td>
 							</tr>
 							<tr>
-							<td><input type="checkbox" id="s" name="l2" value="1"></td>
-							<td><input type="checkbox" id="s" name="m2" value="1"></td>
-							<td><input type="checkbox" id="s" name="r2" value="1"></td>
-							<td><input type="checkbox" id="s" name="g2" value="1"></td>
+							<td><input type="checkbox" name="l2" value="1" {{shouldBeDisabled($course->f1)}}></td>
+							<td><input type="checkbox" name="m2" value="1" {{shouldBeDisabled($course->f3)}}></td>
+							<td><input type="checkbox" name="r2" value="1" {{shouldBeDisabled($course->f5)}}></td>
+							<td><input type="checkbox" name="g2" value="1" {{shouldBeDisabled($course->f8)}}></td>
 							</tr>
 							<tr>
-							<td><input type="checkbox" id="s" name="l3" value="1"></td>
-							<td><input type="checkbox" id="s" name="m3" value="1"></td>
-							<td><input type="checkbox" id="s" name="r3" value="1"></td>
-							<td><input type="checkbox" id="s" name="g3" value="1"></td>
+							<td><input type="checkbox" name="l3" value="1" {{shouldBeDisabled($course->f2)}}></td>
+							<td><input type="checkbox" name="m3" value="1" {{shouldBeDisabled($course->f4)}}></td>
+							<td><input type="checkbox" name="r3" value="1" {{shouldBeDisabled($course->f6)}}></td>
+							<td><input type="checkbox" name="g3" value="1" {{shouldBeDisabled($course->f9)}}></td>
 							</tr>
 						@else
 							<tr>
