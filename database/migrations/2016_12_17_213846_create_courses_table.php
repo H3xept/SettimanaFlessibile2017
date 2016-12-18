@@ -20,6 +20,16 @@ class CreateCoursesTable extends Migration
             $table->longText('ref'); //Referents
             $table->longText('pRef'); //Professors
             $table->longText('ext'); //Externals
+            $table->boolean('type'); //Progressive == 1
+            $table->smallInteger('f1'); //Lun 2
+            $table->smallInteger('f2'); //Lun 3
+            $table->smallInteger('f3'); //Mar 2
+            $table->smallInteger('f4');
+            $table->smallInteger('f5'); //Mer 2
+            $table->smallInteger('f6');
+            $table->smallInteger('f7'); //Gio 1
+            $table->smallInteger('f8');
+            $table->smallInteger('f9');
             $table->timestamps();
         });
     }
