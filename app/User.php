@@ -9,6 +9,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function sessions()
+    {
+        return $this->belongsToMany('App\Session');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
