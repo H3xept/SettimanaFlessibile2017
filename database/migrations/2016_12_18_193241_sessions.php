@@ -25,6 +25,8 @@ class Sessions extends Migration
             $table->smallInteger('f7')->default('0');
             $table->smallInteger('f8')->default('0');
             $table->smallInteger('f9')->default('0');
+            $table->integer('maxStudents')->default(30);
+            $table->integer('signedStudents')->default(0);
         });
 
         Schema::table('sessions', function($table){

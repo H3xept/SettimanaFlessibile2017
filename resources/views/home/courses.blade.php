@@ -61,65 +61,87 @@ function shouldBeDisabled($ret){
 		        <p>{{$course->ref}}</p>
 		        <hr>
 
-				<div class="table-responsive">
-					<table class="table">
-					<thead>
-						<tr>
-						<th>Lunedì</th>
-						<th>Martedì</th>
-						<th>Mercoledì</th>
-						<th>Giovedì</th>
-						</tr>
-					</thead>
-					<tbody>
-						@if($course->type == 0)
+		        <form id="{{$course->id}}form" action="/courses/{{$course->id}}/sign" method="POST">
+		        {{csrf_field()}}
+					<div class="table-responsive">
+						<table class="table">
+						<thead>
 							<tr>
-							<td><input type="checkbox"  name="l1" value="1" disabled="true"></td>
-							<td><input type="checkbox"  name="m1" value="1" disabled="true"></td>
-							<td><input type="checkbox"  name="r1" value="1" disabled="true"></td>
-							<td><input type="checkbox"  name="g1" value="1" {{shouldBeDisabled($course->f7)}}></td>
+							<th>Lunedì</th>
+							<th>Martedì</th>
+							<th>Mercoledì</th>
+							<th>Giovedì</th>
 							</tr>
-							<tr>
-							<td><input type="checkbox" name="l2" value="1" {{shouldBeDisabled($course->f1)}}></td>
-							<td><input type="checkbox" name="m2" value="1" {{shouldBeDisabled($course->f3)}}></td>
-							<td><input type="checkbox" name="r2" value="1" {{shouldBeDisabled($course->f5)}}></td>
-							<td><input type="checkbox" name="g2" value="1" {{shouldBeDisabled($course->f8)}}></td>
-							</tr>
-							<tr>
-							<td><input type="checkbox" name="l3" value="1" {{shouldBeDisabled($course->f2)}}></td>
-							<td><input type="checkbox" name="m3" value="1" {{shouldBeDisabled($course->f4)}}></td>
-							<td><input type="checkbox" name="r3" value="1" {{shouldBeDisabled($course->f6)}}></td>
-							<td><input type="checkbox" name="g3" value="1" {{shouldBeDisabled($course->f9)}}></td>
-							</tr>
-						@else
-							<tr>
-							<td><i class="fa fa-ban"></i><input hidden="true" name="pl1" value="0"></label></label></td></td>
-							<td><i class="fa fa-ban"></i><input hidden="true" name="pm1" value="0"></label></label></td></td>
-							<td><i class="fa fa-ban"></i><input hidden="true" name="pr1" value="0"></label></label></td></td>
-							<td>{!!$modifiers[$course->f7]!!}<input hidden="true" name="f7" value='{{$course->f7}}'></label></td>
-							</tr>
-							<tr>
-							<td>{!!$modifiers[$course->f1]!!}<input hidden="true" name="f1" value='{{$course->f1}}'></label></td>
-							<td>{!!$modifiers[$course->f3]!!}<input hidden="true" name="f3" value='{{$course->f3}}'></label></td>
-							<td>{!!$modifiers[$course->f5]!!}<input hidden="true" name="f5" value='{{$course->f5}}'></label></td>
-							<td>{!!$modifiers[$course->f8]!!}<input hidden="true" name="f8" value='{{$course->f8}}'></label></td>
-							</tr>
-							<tr>
-							<td>{!!$modifiers[$course->f2]!!}<input hidden="true" name="f2" value='{{$course->f2}}'></label></td>
-							<td>{!!$modifiers[$course->f4]!!}<input hidden="true" name="f4" value='{{$course->f4}}'></label></td>
-							<td>{!!$modifiers[$course->f6]!!}<input hidden="true" name="f6" value='{{$course->f6}}'></label></td>
-							<td>{!!$modifiers[$course->f9]!!}<input hidden="true" name="f9" value='{{$course->f9}}'></label></td>
-							</tr>
-						@endif
-					</tbody>
-					</table>
-				</div>
+						</thead>
+						<tbody>
+							@if($course->type == 0)
+								<tr>
+								<td><input type="checkbox"  name="l1" value="1" disabled="true"></td>
+								<td><input type="checkbox"  name="m1" value="1" disabled="true"></td>
+								<td><input type="checkbox"  name="r1" value="1" disabled="true"></td>
+								<td><input type="checkbox"  name="g1" value="1" {{shouldBeDisabled($course->f7)}}></td>
+								</tr>
+								<tr>
+								<td><input type="checkbox" name="l2" value="1" {{shouldBeDisabled($course->f1)}}></td>
+								<td><input type="checkbox" name="m2" value="1" {{shouldBeDisabled($course->f3)}}></td>
+								<td><input type="checkbox" name="r2" value="1" {{shouldBeDisabled($course->f5)}}></td>
+								<td><input type="checkbox" name="g2" value="1" {{shouldBeDisabled($course->f8)}}></td>
+								</tr>
+								<tr>
+								<td><input type="checkbox" name="l3" value="1" {{shouldBeDisabled($course->f2)}}></td>
+								<td><input type="checkbox" name="m3" value="1" {{shouldBeDisabled($course->f4)}}></td>
+								<td><input type="checkbox" name="r3" value="1" {{shouldBeDisabled($course->f6)}}></td>
+								<td><input type="checkbox" name="g3" value="1" {{shouldBeDisabled($course->f9)}}></td>
+								</tr>
+							@else
+								<tr>
+								<td><i class="fa fa-ban"></i><input hidden="true" name="pl1" value="0"></label></label></td></td>
+								<td><i class="fa fa-ban"></i><input hidden="true" name="pm1" value="0"></label></label></td></td>
+								<td><i class="fa fa-ban"></i><input hidden="true" name="pr1" value="0"></label></label></td></td>
+								<td>{!!$modifiers[$course->f7]!!}<input hidden="true" name="f7" value='{{$course->f7}}'></label></td>
+								</tr>
+								<tr>
+								<td>{!!$modifiers[$course->f1]!!}<input hidden="true" name="f1" value='{{$course->f1}}'></label></td>
+								<td>{!!$modifiers[$course->f3]!!}<input hidden="true" name="f3" value='{{$course->f3}}'></label></td>
+								<td>{!!$modifiers[$course->f5]!!}<input hidden="true" name="f5" value='{{$course->f5}}'></label></td>
+								<td>{!!$modifiers[$course->f8]!!}<input hidden="true" name="f8" value='{{$course->f8}}'></label></td>
+								</tr>
+								<tr>
+								<td>{!!$modifiers[$course->f2]!!}<input hidden="true" name="f2" value='{{$course->f2}}'></label></td>
+								<td>{!!$modifiers[$course->f4]!!}<input hidden="true" name="f4" value='{{$course->f4}}'></label></td>
+								<td>{!!$modifiers[$course->f6]!!}<input hidden="true" name="f6" value='{{$course->f6}}'></label></td>
+								<td>{!!$modifiers[$course->f9]!!}<input hidden="true" name="f9" value='{{$course->f9}}'></label></td>
+								</tr>
+							@endif
+						</tbody>
+						</table>
+					</div>
 
-		      </div>
-		      <div class="modal-footer">
-		      	<button type="button" class="btn btn-success">Registrati</button>
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-		      </div>
+			      </div>
+			      <div class="modal-footer">
+			      	<button type="submit" class="btn btn-success">Registrati</button>
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+			      </div>
+		      </form>
+
+<script type="text/javascript">
+	$("#{{$course->id}}form").submit(function(e) {
+
+    var url = "/courses/{{$course->id}}/sign";
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $(this).serialize(),
+           success: function(data)
+           {
+               alert(data);
+           }
+         });
+
+    e.preventDefault();
+	});
+</script>
 		    </div>
 
 		  </div>

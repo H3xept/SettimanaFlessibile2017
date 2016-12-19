@@ -24,11 +24,11 @@ Route::get('/courses', function () {
     return view('home.courses')->withCourses($courses);
 })->middleware('auth')->name('courses');
 
+Route::post('/courses/{course_id}/sign',['uses'=>'UsersController@sign'])->middleware('auth')->name('sign');
 //Temporary ---------
 Route::get('/courses/create', function () {
     return view('users.test');
 })->middleware('auth');
-
 Route::post('/storecourse',['uses'=>'CoursesController@store'])->middleware('auth');
 //Temporary ---------
 

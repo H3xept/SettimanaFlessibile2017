@@ -72,7 +72,6 @@ class CoursesController extends Controller
                     }
                 }
             }
-            dd($course);
         }
 
     	return "YE";

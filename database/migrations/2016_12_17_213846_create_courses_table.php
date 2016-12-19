@@ -30,6 +30,7 @@ class CreateCoursesTable extends Migration
             $table->smallInteger('f7'); //Gio 1
             $table->smallInteger('f8');
             $table->smallInteger('f9');
+            $table->integer('maxStudentsPerSession')->default(30);
             $table->timestamps();
         });
     }
