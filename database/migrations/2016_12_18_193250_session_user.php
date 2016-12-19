@@ -37,6 +37,6 @@ class SessionUser extends Migration
      */
     public function down()
     {
-
+        Schema::drop('session_user');
     }
 }

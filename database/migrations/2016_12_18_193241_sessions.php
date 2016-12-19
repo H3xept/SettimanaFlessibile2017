@@ -15,16 +15,16 @@ class Sessions extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('course_id')->unsigned();
-            $table->smallInteger('f1');
-            $table->smallInteger('f2');
-            $table->smallInteger('f3');
-            $table->smallInteger('f4');
-            $table->smallInteger('f5');
-            $table->smallInteger('f6');
-            $table->smallInteger('f7');
-            $table->smallInteger('f8');
-            $table->smallInteger('f9');
+            $table->integer('course_id')->unsigned()->nullable();
+            $table->smallInteger('f1')->default('0');
+            $table->smallInteger('f2')->default('0');
+            $table->smallInteger('f3')->default('0');
+            $table->smallInteger('f4')->default('0');
+            $table->smallInteger('f5')->default('0');
+            $table->smallInteger('f6')->default('0');
+            $table->smallInteger('f7')->default('0');
+            $table->smallInteger('f8')->default('0');
+            $table->smallInteger('f9')->default('0');
         });
 
         Schema::table('sessions', function($table){

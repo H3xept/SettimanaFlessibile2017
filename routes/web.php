@@ -10,6 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+use App\Course;
 
 Route::get('/', function () {
     return view('home.home');
