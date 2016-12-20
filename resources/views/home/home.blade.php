@@ -10,8 +10,12 @@ Profilo
 
 
 @section('content')
-<?php $user = $sessions = Auth::user()->sessions; dd($sessions);?>
-<div id="list-id" class="jumbotron" align="center" style="  border-color: #CCCCCC;border-width: 1px;border-style:solid;">
+<?php $user = $user_id = Auth::user()->id;
+
+$sessions_courses_id = Auth::user()->sessions()->select('course_id')->get()->toArray();
+
+?>
+<div id="list-id" class="jumbotron" align="center" style=" border-color: #CCCCCC;border-width: 1px;border-style:solid;">
     <div align="left"><h3>Programmazione settimana</h3></div><hr>
   <table class="table table-hover">
   <thead>
@@ -25,7 +29,7 @@ Profilo
     <tr>
         <td>Lunedì</td>
         <td>2°</td>
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td><a href="#">>Nessun corso selezionato.</a></td>
     </tr>
     <tr>
         <td>Lunedì</td>
