@@ -17,7 +17,7 @@ class Session extends Model
     }
 
     protected $fillable = [
-        'course_id','f1', 'f2', 'f3','f4','f5','f6','f7','f8','f9'
+        'course_id','f1', 'f2', 'f3','f4','f5','f6','f7','f8','f9','sessionNumber'
     ];
 	public $timestamps = false;
 }

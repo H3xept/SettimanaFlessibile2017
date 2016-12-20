@@ -63,6 +63,25 @@ function shouldBeDisabled($ret){
 
 		        <form id="{{$course->id}}form" action="/courses/{{$course->id}}/sign" method="POST">
 		        {{csrf_field()}}
+		        	@if($course->type == 1)
+		        	<div align="center">
+		        		@if($course->sessionY)
+					    <label class="radio-inline">
+					      <input type="radio" name="session_number" value="0" checked="true">Giallo
+					    </label>
+					    @endif
+					    @if($course->sessionG)
+					    <label class="radio-inline">
+					      <input type="radio" name="session_number" value="1">Verde
+					    </label>
+					    @endif
+					    @if($course->sessionB)
+					    <label class="radio-inline">
+					      <input type="radio" name="session_number" value="2">Azzurro
+					    </label>
+					    @endif
+		        	</div><br>
+		        	@endif
 					<div class="table-responsive">
 						<table class="table">
 						<thead>
@@ -76,28 +95,28 @@ function shouldBeDisabled($ret){
 						<tbody>
 							@if($course->type == 0)
 								<tr>
-								<td><input type="checkbox"  name="l1" value="1" disabled="true"></td>
-								<td><input type="checkbox"  name="m1" value="1" disabled="true"></td>
-								<td><input type="checkbox"  name="r1" value="1" disabled="true"></td>
-								<td><input type="checkbox"  name="g1" value="1" {{shouldBeDisabled($course->f7)}}></td>
+								<td><input type="checkbox" value="1" disabled="true"></td>
+								<td><input type="checkbox" value="1" disabled="true"></td>
+								<td><input type="checkbox" value="1" disabled="true"></td>
+								<td><input type="checkbox" name="f7" value="1" {{shouldBeDisabled($course->f7)}}></td>
 								</tr>
 								<tr>
-								<td><input type="checkbox" name="l2" value="1" {{shouldBeDisabled($course->f1)}}></td>
-								<td><input type="checkbox" name="m2" value="1" {{shouldBeDisabled($course->f3)}}></td>
-								<td><input type="checkbox" name="r2" value="1" {{shouldBeDisabled($course->f5)}}></td>
-								<td><input type="checkbox" name="g2" value="1" {{shouldBeDisabled($course->f8)}}></td>
+								<td><input type="checkbox" name="f1" value="1" {{shouldBeDisabled($course->f1)}}></td>
+								<td><input type="checkbox" name="f3" value="1" {{shouldBeDisabled($course->f3)}}></td>
+								<td><input type="checkbox" name="f5" value="1" {{shouldBeDisabled($course->f5)}}></td>
+								<td><input type="checkbox" name="f8" value="1" {{shouldBeDisabled($course->f8)}}></td>
 								</tr>
 								<tr>
-								<td><input type="checkbox" name="l3" value="1" {{shouldBeDisabled($course->f2)}}></td>
-								<td><input type="checkbox" name="m3" value="1" {{shouldBeDisabled($course->f4)}}></td>
-								<td><input type="checkbox" name="r3" value="1" {{shouldBeDisabled($course->f6)}}></td>
-								<td><input type="checkbox" name="g3" value="1" {{shouldBeDisabled($course->f9)}}></td>
+								<td><input type="checkbox" name="f2" value="1" {{shouldBeDisabled($course->f2)}}></td>
+								<td><input type="checkbox" name="f4" value="1" {{shouldBeDisabled($course->f4)}}></td>
+								<td><input type="checkbox" name="f6" value="1" {{shouldBeDisabled($course->f6)}}></td>
+								<td><input type="checkbox" name="f9" value="1" {{shouldBeDisabled($course->f9)}}></td>
 								</tr>
 							@else
 								<tr>
-								<td><i class="fa fa-ban"></i><input hidden="true" name="pl1" value="0"></label></label></td></td>
-								<td><i class="fa fa-ban"></i><input hidden="true" name="pm1" value="0"></label></label></td></td>
-								<td><i class="fa fa-ban"></i><input hidden="true" name="pr1" value="0"></label></label></td></td>
+								<td><i class="fa fa-ban"></i></label></label></td></td>
+								<td><i class="fa fa-ban"></i></label></label></td></td>
+								<td><i class="fa fa-ban"></i></label></label></td></td>
 								<td>{!!$modifiers[$course->f7]!!}<input hidden="true" name="f7" value='{{$course->f7}}'></label></td>
 								</tr>
 								<tr>
@@ -124,7 +143,7 @@ function shouldBeDisabled($ret){
 			      </div>
 		      </form>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$("#{{$course->id}}form").submit(function(e) {
 
     var url = "/courses/{{$course->id}}/sign";
@@ -135,13 +154,13 @@ function shouldBeDisabled($ret){
            data: $(this).serialize(),
            success: function(data)
            {
-               alert(data);
+             alert(data);   
            }
          });
 
     e.preventDefault();
 	});
-</script>
+</script> -->
 		    </div>
 
 		  </div>
