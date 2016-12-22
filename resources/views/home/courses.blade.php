@@ -139,14 +139,15 @@ function shouldBeDisabled($ret){
 
 			      </div>
 			      <div class="modal-footer">
-			      	<button type="submit" class="btn btn-success">Registrati</button>
+			      	<button type="submit" data-loading-text="<i class='fa fa-spinner fa-spin'>" id="{{$course->id}}button" class="btn btn-success">Registrati</button>
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
 			      </div>
 		      </form>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$("#{{$course->id}}form").submit(function(e) {
-
+	$button = $("#{{$course->id}}button");
+	$button.button('loading');
     var url = "/courses/{{$course->id}}/sign";
 
     $.ajax({
@@ -155,13 +156,18 @@ function shouldBeDisabled($ret){
            data: $(this).serialize(),
            success: function(data)
            {
-             alert(data);   
+             $button.button('reset');
+           },
+           error: function(data)
+           {
+           	$button.button('reset');
+           	$button.text(data);
            }
          });
 
     e.preventDefault();
 	});
-</script> -->
+</script>
 		    </div>
 
 		  </div>

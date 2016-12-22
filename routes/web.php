@@ -27,6 +27,7 @@ Route::get('/courses', function () {
 })->middleware('auth')->name('courses');
 
 Route::post('/courses/{course_id}/sign',['uses'=>'UsersController@sign'])->middleware('auth')->name('sign');
+Route::get('/courses/{course_id}/{session_number}/unsign',['uses'=>'UsersController@unsign'])->middleware('auth')->name('unsign');
 //Temporary ---------
 Route::get('/courses/create', function () {
     return view('users.test');
