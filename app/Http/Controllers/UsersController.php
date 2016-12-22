@@ -54,13 +54,11 @@ class UsersController extends Controller
 
 
             $session_obj = Session::find($session_id);
-            $user->sessions()->attach($session_obj);
-                        $time_elapsed_secs = microtime(true) - $start;
-            dd($time_elapsed_secs);
             foreach ($stripes_codes as $key => $value) {
                 if($user->$key != NULL){echo "ERROR, YOU HAVE  A COURSE THERE"; die();}
                 $user->$key = $session_id;
             }
+            $user->sessions()->attach($session_obj);
             $user->save();
             $time_elapsed_secs = microtime(true) - $start;
             dd($time_elapsed_secs);
