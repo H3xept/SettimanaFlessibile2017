@@ -10,13 +10,22 @@ Profilo
 
 
 @section('content')
-<?php $user = $user_id = Auth::user()->id;
+<?php 
+$start = microtime(true);
 
-$sessions_courses_id = Auth::user()->sessions()->join('courses','courses.id','=','sessions.course_id')->select(array('sessionNumber','courses.name'))->get()->toArray();
-
-dd(Auth::user()->sessions()->get()->toArray());
+$sessions_courses_id = Auth::user()->sessions()->join('courses','courses.id','=','course_id')->select(array('sessions.*','courses.name'))->get()->toArray();
 $courses_name_array = array();
 
+foreach($sessions_courses_id as $key=>$session){
+    for ($i_c=0;$i_c<9;$i_c++) { 
+        $nd = ("f".($i_c+1));
+        if($session["f".($i_c+1)] != "0"){
+            $courses_name_array["f".($i_c+1)] = $session["f".($i_c+1)];
+        }
+    }
+}
+$time_elapsed_secs = microtime(true) - $start;
+echo $time_elapsed_secs;
 foreach ($sessions_courses_id as $key => $value) {
     $courses_name_array[$value['sessionNumber']] = $value['name'];
 }

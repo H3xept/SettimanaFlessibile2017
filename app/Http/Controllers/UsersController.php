@@ -34,7 +34,6 @@ class UsersController extends Controller
         $user = Auth::user(); 
 
         if($course->type == 1){
-            $start = microtime(true);
             $stripes_codes = array("f1"=>$input['f1'],"f2"=>$input['f2'],"f3"=>$input['f3'],"f4"=>$input['f4'],
                 "f5"=>$input['f5'],"f6"=>$input['f6'],"f7"=>$input['f7'],"f8"=>$input['f8'],"f9"=>$input['f9']);
 
@@ -52,7 +51,6 @@ class UsersController extends Controller
                 die();
             }   
 
-
             $session_obj = Session::find($session_id);
             foreach ($stripes_codes as $key => $value) {
                 if($user->$key != NULL){echo "ERROR, YOU HAVE  A COURSE THERE"; die();}
@@ -60,10 +58,7 @@ class UsersController extends Controller
             }
             $user->sessions()->attach($session_obj);
             $user->save();
-            $time_elapsed_secs = microtime(true) - $start;
-            dd($time_elapsed_secs);
         }else{
-            $start = microtime(true);
             $stripes_codes = $input;
             $session_ids = array();
             unset($stripes_codes['_token']);
@@ -87,8 +82,6 @@ class UsersController extends Controller
                 $user->$equivalent_session_name = $session_id;
                 $user->save();
             }
-            $time_elapsed_secs = microtime(true) - $start;
-            dd($time_elapsed_secs);
         }
 
     }
