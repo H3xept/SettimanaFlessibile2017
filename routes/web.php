@@ -20,8 +20,10 @@ Route::get('/home', function () {
 })->middleware('auth');//Redundant
 
 Route::get('/courses', function () {
+	$start = microtime(true);
 	$courses = DB::table('courses')->get();
-    return view('home.courses')->withCourses($courses);
+    $time_elapsed_secs = microtime(true) - $start;
+    return view('home.courses')->with(['courses'=>$courses,'time'=>$time_elapsed_secs]);
 })->middleware('auth')->name('courses');
 
 Route::post('/courses/{course_id}/sign',['uses'=>'UsersController@sign'])->middleware('auth')->name('sign');
