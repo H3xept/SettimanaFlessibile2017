@@ -12,8 +12,14 @@ Profilo
 @section('content')
 <?php $user = $user_id = Auth::user()->id;
 
-$sessions_courses_id = Auth::user()->sessions()->select('course_id')->get()->toArray();
+$sessions_courses_id = Auth::user()->sessions()->join('courses','courses.id','=','sessions.course_id')->select(array('sessionNumber','courses.name'))->get()->toArray();
 
+dd(Auth::user()->sessions()->get()->toArray());
+$courses_name_array = array();
+
+foreach ($sessions_courses_id as $key => $value) {
+    $courses_name_array[$value['sessionNumber']] = $value['name'];
+}
 ?>
 <div id="list-id" class="jumbotron" align="center" style=" border-color: #CCCCCC;border-width: 1px;border-style:solid;">
     <div align="left"><h3>Programmazione settimana</h3></div><hr>
