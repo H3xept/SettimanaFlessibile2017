@@ -13,7 +13,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Session');
     }
-
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket');
+    }
     /**
      * The attributes that are mass assignable.
      *

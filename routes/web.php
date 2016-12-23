@@ -28,6 +28,11 @@ Route::get('/courses', function () {
 
 Route::post('/courses/{course_id}/sign',['uses'=>'UsersController@sign'])->middleware('auth')->name('sign');
 Route::get('/courses/{course_id}/{session_number}/unsign',['uses'=>'UsersController@unsign'])->middleware('auth')->name('unsign');
+
+Route::get('/tickets',['uses'=>'TicketsController@index'])->middleware('auth')->name('tickets');
+Route::post('/tickets/new',['uses'=>'TicketsController@store'])->middleware('auth')->name('new_ticket');
+Route::get('/tickets/{ticket_id}/delete',['uses'=>'TicketsController@delete'])->middleware('auth')->name('del_ticket');
+
 //Temporary ---------
 Route::get('/courses/create', function () {
     return view('users.test');

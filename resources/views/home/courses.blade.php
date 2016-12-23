@@ -5,6 +5,7 @@
 <a href="{{route('home')}}" class="list-group-item">Profilo</a>
 <a href="{{route('courses')}}" class="list-group-item disabled">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
+<a href="{{route('tickets')}}" class="list-group-item">Aiuto</a>
 @endsection
 
 @section('content')
