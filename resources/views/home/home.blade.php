@@ -11,10 +11,11 @@ Profilo
 
 @section('content')
 <?php 
+
+define('no_course_selected', '<a href="/courses">Nessun corso selezionato.</a>');
+
 $start = microtime(true);
-
 $sessions = Auth::user()->sessions()->join('courses','courses.id','=','course_id')->select(array('sessions.*','courses.name'))->get()->toArray();
-
 $courses_name_array = array();
 $courses_id_session_array = array();
 
@@ -55,7 +56,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
     <tr>
@@ -69,7 +70,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
     <tr>
@@ -83,7 +84,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
     <tr>
@@ -97,7 +98,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
     <tr>
@@ -111,7 +112,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
     <tr>
@@ -125,7 +126,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
     <tr>
@@ -139,7 +140,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
     <tr>
@@ -153,7 +154,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
     <tr>
@@ -167,7 +168,7 @@ foreach ($sessions as $key => $value) {
 </script>
 
         @else
-        <td><a href="#">Nessun corso selezionato.</a></td>
+        <td>{!!no_course_selected!!}</td>
         @endif
     </tr>
   </tbody>
