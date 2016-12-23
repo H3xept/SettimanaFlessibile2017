@@ -40,7 +40,7 @@ class UsersController extends Controller
             foreach ($stripes_codes as $key => $value) {
                 if($value == 0 || $value != $chosen_session){ unset($stripes_codes[$key]); }
             }
-            if(count($stripes_codes) <= 0) {echo "Nessuna fascia selezionata!"; die();}
+            if(count($stripes_codes) <= 0) {echo "empty"; die();}
             foreach ($stripes_codes as $key => $value) {
                 $session_sql = DB::table('sessions')->where('course_id',$course_id)->where('sessionNumber',$chosen_session-1)->first();
                 $session_id = $session_sql->id;
@@ -48,13 +48,13 @@ class UsersController extends Controller
                 break;
             }
             if($max <= $session_signed){
-                echo "Il corso è pieno per le fasce selezionate.";
+                echo "full";
                 die();
             }   
 
             $session_obj = Session::find($session_id);
             foreach ($stripes_codes as $key => $value) {
-                if($user->$key != NULL){echo "Hai già un corso per una o più fasce selezionate."; die();}
+                if($user->$key != NULL){echo "already_reg"; die();}
                 $user->$key = $session_id;
             }
             $session_obj->signedStudents+=1;
@@ -65,17 +65,17 @@ class UsersController extends Controller
             $stripes_codes = $input;
             $session_ids = array();
             unset($stripes_codes['_token']);
-            if(count($stripes_codes) <= 0) {echo "Nessuna fascia selezionata!"; die();}
+            if(count($stripes_codes) <= 0) {echo "empty"; die();}
             foreach ($stripes_codes as $session_code => $value) {
                 $session_number = intval(substr($session_code,1))-1;
                 $session_sql = DB::table('sessions')->where('course_id',$course_id)->where('sessionNumber',$session_number)->first();
                 $session_id = $session_sql->id;
                 $session_signed = $session_sql->signedStudents;
                 if($max <= $session_signed){
-                    echo "Il corso è pieno per le fasce selezionate.";
+                    echo "full";
                     die();
                 }      
-                if($user->$session_code != NULL){ echo "Hai già un corso per una o più fasce selezionate."; die();}
+                if($user->$session_code != NULL){ echo "already_reg"; die();}
                 $session_ids[] = $session_id;
             }
             foreach ($session_ids as $key => $value) {
@@ -87,6 +87,7 @@ class UsersController extends Controller
                 $session_obj->save();
             }
             $user->save();
+            echo "ok";
         }
 
     }

@@ -157,7 +157,28 @@ function shouldBeDisabled($ret){
            data: $(this).serialize(),
            success: function(data)
            {
-             $button.button('reset');
+           	$string = "";
+           	if(data == "ok"){$string = "Registrazione avvenuta.";}
+           	else if(data == "full"){$string = "Il corso è pieno per le fasce selezionate.";}
+           	else if(data == "empty"){$string = "Nessuna fascia selezionata!";}
+           	else if(data == "already_reg"){$string = "Hai già un corso per una o più fasce selezionate.";}
+           	if(data == "ok"){
+           		$button.text($string);
+           		$button.button('active');
+				window.setTimeout(function() {
+				    $button.text('Registrati');
+				}, 4000);
+			}else{
+				$button.button('reset');
+				var dialog = new BootstrapDialog()
+				            .setTitle('Attenzione')
+				            .setMessage($string)
+				            .setType(BootstrapDialog.TYPE_DANGER)
+				            .open();
+				window.setTimeout(function(){
+					dialog.close();
+				},4000);
+			}
            },
            error: function(data)
            {
