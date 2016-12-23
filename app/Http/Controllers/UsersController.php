@@ -57,8 +57,10 @@ class UsersController extends Controller
                 if($user->$key != NULL){echo "Hai già un corso per una o più fasce selezionate."; die();}
                 $user->$key = $session_id;
             }
+            $session_obj->signedStudents+=1;
             $user->sessions()->attach($session_obj);
             $user->save();
+            $session_obj->save();
         }else{
             $stripes_codes = $input;
             $session_ids = array();
@@ -79,10 +81,12 @@ class UsersController extends Controller
             foreach ($session_ids as $key => $value) {
                 $session_obj = Session::find($value);
                 $user->sessions()->attach($session_obj);
+                $session_obj->signedStudents += 1;
                 $equivalent_session_name = "f".($session_obj->sessionNumber+1);
                 $user->$equivalent_session_name = $session_id;
-                $user->save();
+                $session_obj->save();
             }
+            $user->save();
         }
 
     }

@@ -50,10 +50,10 @@ foreach ($sessions as $key => $value) {
         <td>Lunedì</td>
         <td>2°</td>
         @if(isset($courses_name_array['f1']))
-        <td><a href="#">{{$courses_name_array['f1']}}</a><button id="f1Button" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f1'][0]}}/{{$courses_id_array['f1'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f1']}}</a><button id="f1Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f1'][0]}}/{{$courses_id_array['f1'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f1Button").click(function(e) { var url = "/courses/{{$courses_id_array['f1'][0]}}/{{$courses_id_array['f1'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f1Button").click(function(e) { var url = "/courses/{{$courses_id_array['f1'][0]}}/{{$courses_id_array['f1'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
@@ -64,10 +64,10 @@ foreach ($sessions as $key => $value) {
         <td>Lunedì</td>
         <td>3°</td>
         @if(isset($courses_name_array['f2']))
-        <td><a href="#">{{$courses_name_array['f2']}}</a><button id="f2Button" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f2'][0]}}/{{$courses_id_array['f2'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f2']}}</a><button id="f2Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f2'][0]}}/{{$courses_id_array['f2'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f2Button").click(function(e) { var url = "/courses/{{$courses_id_array['f2'][0]}}/{{$courses_id_array['f2'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f2Button").click(function(e) { var url = "/courses/{{$courses_id_array['f2'][0]}}/{{$courses_id_array['f2'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
@@ -78,10 +78,10 @@ foreach ($sessions as $key => $value) {
         <td>Martedì</td>
         <td>2°</td>
         @if(isset($courses_name_array['f3']))
-        <td><a href="#">{{$courses_name_array['f3']}}</a><button id="f3Button" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f3'][0]}}/{{$courses_id_array['f3'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f3']}}</a><button id="f3Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f3'][0]}}/{{$courses_id_array['f3'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f3Button").click(function(e) { var url = "/courses/{{$courses_id_array['f3'][0]}}/{{$courses_id_array['f3'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f3Button").click(function(e) { var url = "/courses/{{$courses_id_array['f3'][0]}}/{{$courses_id_array['f3'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
@@ -92,10 +92,10 @@ foreach ($sessions as $key => $value) {
         <td>Martedì</td>
         <td>3°</td>
         @if(isset($courses_name_array['f4']))
-        <td><a href="#">{{$courses_name_array['f4']}}</a><button class="btn btn-danger pull-right" id="f4Button" href="/courses/{{$courses_id_array['f4'][0]}}/{{$courses_id_array['f4'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f4']}}</a><button class="btn btn-danger pull-right" id="f4Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" href="/courses/{{$courses_id_array['f4'][0]}}/{{$courses_id_array['f4'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f4Button").click(function(e) { var url = "/courses/{{$courses_id_array['f4'][0]}}/{{$courses_id_array['f4'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f4Button").click(function(e) { var url = "/courses/{{$courses_id_array['f4'][0]}}/{{$courses_id_array['f4'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
@@ -106,10 +106,10 @@ foreach ($sessions as $key => $value) {
         <td>Mercoledì</td>
         <td>2°</td>
         @if(isset($courses_name_array['f5']))
-        <td><a href="#">{{$courses_name_array['f5']}}</a><button id="f5Button" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f5'][0]}}/{{$courses_id_array['f5'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f5']}}</a><button id="f5Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f5'][0]}}/{{$courses_id_array['f5'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f5Button").click(function(e) { var url = "/courses/{{$courses_id_array['f5'][0]}}/{{$courses_id_array['f5'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f5Button").click(function(e) { var url = "/courses/{{$courses_id_array['f5'][0]}}/{{$courses_id_array['f5'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
@@ -120,10 +120,10 @@ foreach ($sessions as $key => $value) {
         <td>Mercoledì</td>
         <td>3°</td>
         @if(isset($courses_name_array['f6']))
-        <td><a href="#">{{$courses_name_array['f6']}}</a><button id="f6Button" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f6'][0]}}/{{$courses_id_array['f6'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f6']}}</a><button id="f6Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f6'][0]}}/{{$courses_id_array['f6'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f6Button").click(function(e) { var url = "/courses/{{$courses_id_array['f6'][0]}}/{{$courses_id_array['f6'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f6Button").click(function(e) { var url = "/courses/{{$courses_id_array['f6'][0]}}/{{$courses_id_array['f6'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
@@ -134,10 +134,10 @@ foreach ($sessions as $key => $value) {
         <td>Giovedì</td>
         <td>1°</td>
         @if(isset($courses_name_array['f7']))
-        <td><a href="#">{{$courses_name_array['f7']}}</a><button id="f7Button" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f7'][0]}}/{{$courses_id_array['f7'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f7']}}</a><button id="f7Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f7'][0]}}/{{$courses_id_array['f7'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f7Button").click(function(e) { var url = "/courses/{{$courses_id_array['f7'][0]}}/{{$courses_id_array['f7'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f7Button").click(function(e) { var url = "/courses/{{$courses_id_array['f7'][0]}}/{{$courses_id_array['f7'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
@@ -148,10 +148,10 @@ foreach ($sessions as $key => $value) {
         <td>Giovedì</td>
         <td>2°</td>
         @if(isset($courses_name_array['f8']))
-        <td><a href="#">{{$courses_name_array['f8']}}</a><button id="f8Button" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f8'][0]}}/{{$courses_id_array['f8'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f8']}}</a><button id="f8Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f8'][0]}}/{{$courses_id_array['f8'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f8Button").click(function(e) { var url = "/courses/{{$courses_id_array['f8'][0]}}/{{$courses_id_array['f8'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f8Button").click(function(e) { var url = "/courses/{{$courses_id_array['f8'][0]}}/{{$courses_id_array['f8'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
@@ -162,10 +162,10 @@ foreach ($sessions as $key => $value) {
         <td>Giovedì</td>
         <td>3°</td>
         @if(isset($courses_name_array['f9']))
-        <td><a href="#">{{$courses_name_array['f9']}}</a><button id="f9Button" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f9'][0]}}/{{$courses_id_array['f9'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        <td><a href="#">{{$courses_name_array['f9']}}</a><button id="f9Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f9'][0]}}/{{$courses_id_array['f9'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
 
 <script type="text/javascript">
-    $("#f9Button").click(function(e) { var url = "/courses/{{$courses_id_array['f9'][0]}}/{{$courses_id_array['f9'][1]}}/unsign"; $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
+    $("#f9Button").click(function(e) { var url = "/courses/{{$courses_id_array['f9'][0]}}/{{$courses_id_array['f9'][1]}}/unsign"; $(this).button('loading'); $.ajax({type: "GET",url: url,data: $(this).serialize(),success: function(data){location.reload();}});});
 </script>
 
         @else
