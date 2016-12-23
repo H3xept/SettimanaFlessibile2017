@@ -167,7 +167,7 @@ function shouldBeDisabled($ret){
 			}
 			$button.button('reset');
 			var dialog = new BootstrapDialog()
-			            .setTitle('Attenzione')
+			            .setTitle('Tutto ok!')
 			            .setMessage($string)
 			            .setType($type)
 			            .open();
