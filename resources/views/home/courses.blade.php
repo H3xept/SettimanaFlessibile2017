@@ -150,7 +150,6 @@ function shouldBeDisabled($ret){
 	$button = $("#{{$course->id}}button");
 	$button.button('loading');
     var url = "/courses/{{$course->id}}/sign";
-
     $.ajax({
            type: "POST",
            url: url,
@@ -158,32 +157,35 @@ function shouldBeDisabled($ret){
            success: function(data)
            {
            	$string = "";
-           	if(data == "ok"){$string = "Registrazione avvenuta.";}
+           	if(data == "ok"){$string = "Registrazione avvenuta."; $("#{{$course->id}}register").modal('hide');}
            	else if(data == "full"){$string = "Il corso è pieno per le fasce selezionate.";}
            	else if(data == "empty"){$string = "Nessuna fascia selezionata!";}
            	else if(data == "already_reg"){$string = "Hai già un corso per una o più fasce selezionate.";}
-           	if(data == "ok"){
-           		$button.text($string);
-           		$button.button('active');
-				window.setTimeout(function() {
-				    $button.text('Registrati');
-				}, 4000);
-			}else{
-				$button.button('reset');
-				var dialog = new BootstrapDialog()
-				            .setTitle('Attenzione')
-				            .setMessage($string)
-				            .setType(BootstrapDialog.TYPE_DANGER)
-				            .open();
-				window.setTimeout(function(){
-					dialog.close();
-				},4000);
+           	$type = BootstrapDialog.TYPE_SUCCESS;
+           	if(data != "ok"){
+           		$type = BootstrapDialog.TYPE_DANGER;
 			}
+			$button.button('reset');
+			var dialog = new BootstrapDialog()
+			            .setTitle('Attenzione')
+			            .setMessage($string)
+			            .setType($type)
+			            .open();
+			window.setTimeout(function(){
+				dialog.close();
+			},4000);
            },
            error: function(data)
            {
-           	$button.button('reset');
-           	$button.text(data);
+			$button.button('reset');
+			var dialog = new BootstrapDialog()
+			            .setTitle('Attenzione')
+			            .setMessage($string)
+			            .setType(BootstrapDialog.TYPE_DANGER)
+			            .open();
+			window.setTimeout(function(){
+				dialog.close();
+			},4000);
            }
          });
 
