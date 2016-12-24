@@ -10,6 +10,8 @@
 
 @section('content')
 <div class="jumbotron" style="border-color:#CCCCCC;border-width:1px;border-style:solid; padding-top:8px; padding-bottom:8px;">
+<form action="{{route('get_classes')}}" method="POST">
+{{csrf_field()}}
 <div align="center"><h4>Generazione appelli</h4></div><hr>
 	<div class="row">
 		<div class="form-group">
@@ -41,7 +43,8 @@
 			</select>
 		</div>
 		</div>
-	</div><br><button class="btn btn-success">Genera</button>
+	</div><br><button class="btn btn-success" type="submit">Genera</button>
+	</form>
 </div>
 
 <div class="jumbotron" style="border-color:#CCCCCC;border-width:1px;border-style:solid; padding-top:8px; padding-bottom:8px;">

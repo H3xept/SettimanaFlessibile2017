@@ -11,6 +11,7 @@
 |
 */
 use App\Course;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('home.home');
@@ -28,6 +29,22 @@ Route::get('/courses', function () {
 
 Route::post('/courses/{course_id}/sign',['uses'=>'UsersController@sign'])->middleware('auth')->name('sign');
 Route::get('/courses/{course_id}/{session_number}/unsign',['uses'=>'UsersController@unsign'])->middleware('auth')->name('unsign');
+
+//Appelli
+Route::post('/appeals',function(Request $request){
+	$user = Auth::user();
+	if($user->hasEqualOrGreaterPermissionLevel(8)){
+
+		$input = $request->input();
+		$class = $input['class'];
+		$section = $input['section'];
+		$class_string = $class.$section;
+		$data = DB::table('users')->where('class',$class_string)->select(['id','name','f1','f2','f3','f4','f5','f6','f7','f8','f9'])->get();
+		return view('admin.table')->withData($data);
+	}
+	return route('home');
+})->middleware('auth')->name('get_classes');
+
 
 Route::get('/tickets',['uses'=>'TicketsController@index'])->middleware('auth')->name('tickets');
 Route::post('/tickets/new',['uses'=>'TicketsController@store'])->middleware('auth')->name('new_ticket');
