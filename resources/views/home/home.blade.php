@@ -7,6 +7,7 @@ Profilo
 <a href="{{route('courses')}}" class="list-group-item">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
 <a href="{{route('tickets')}}" class="list-group-item">Aiuto</a>
+<br><a href="{{route('admin_panel')}}" class="list-group-item">Admin</a>
 @endsection
 
 

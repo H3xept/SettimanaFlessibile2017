@@ -5,7 +5,8 @@
 <a href="{{route('home')}}" class="list-group-item">Profilo</a>
 <a href="{{route('courses')}}" class="list-group-item disabled">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
-<a href="{{route('tickets')}}" class="list-group-item">Aiuto</a>
+<a href="{{route('tickets')}}" class="list-group-item">Aiuto</a><br>
+<a href="{{route('admin_panel')}}" class="list-group-item">Admin</a>
 @endsection
 
 @section('content')
@@ -162,12 +163,14 @@ function shouldBeDisabled($ret){
            	else if(data == "empty"){$string = "Nessuna fascia selezionata!";}
            	else if(data == "already_reg"){$string = "Hai già un corso per una o più fasce selezionate.";}
            	$type = BootstrapDialog.TYPE_SUCCESS;
+           	$title = "Tutto ok!";
            	if(data != "ok"){
            		$type = BootstrapDialog.TYPE_DANGER;
+           		$title = "Attenzione";
 			}
 			$button.button('reset');
 			var dialog = new BootstrapDialog()
-			            .setTitle('Tutto ok!')
+			            .setTitle($title)
 			            .setMessage($string)
 			            .setType($type)
 			            .open();

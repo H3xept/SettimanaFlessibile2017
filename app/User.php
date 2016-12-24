@@ -17,13 +17,22 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Ticket');
     }
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+    public function hasEqualOrGreaterPermissionLevel($perm)
+    {
+        if(count($this->roles()->where('level','>=',$perm)->get()->toArray())==0){return false;}
+        return true;
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','class'
     ];
 
     /**

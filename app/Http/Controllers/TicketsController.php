@@ -10,7 +10,10 @@ use DB;
 class TicketsController extends Controller
 {
 	public function index(){
-		$tickets = Auth::user()->tickets;
+		$user = Auth::user();
+		if($user->hasEqualOrGreaterPermissionLevel(8)){
+			$tickets = Ticket::all();
+		}else{$tickets = $user->tickets;}
 		return view('home.tickets')->withTickets($tickets);
 	}
 
@@ -23,8 +26,12 @@ class TicketsController extends Controller
 
 	public function delete(Request $request, $ticket_id){
 		try {
+			$user = Auth::user();
 		$ticket = Ticket::find($ticket_id);
-			if($ticket->user_id == Auth::user()->id){
+			if($ticket->user_id == $user->id){
+				$ticket->delete();
+				return "succ";
+			}else if($user->hasEqualOrGreaterPermissionLevel(8)){
 				$ticket->delete();
 				return "succ";
 			}else{return 'err';}

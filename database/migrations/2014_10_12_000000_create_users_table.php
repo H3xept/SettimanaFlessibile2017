@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('class');
             $table->string('password');
             $table->smallInteger('f1')->nullable();
             $table->smallInteger('f2')->nullable();
@@ -40,6 +41,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('session_user');
+        Schema::dropIfExists('role_user');
         Schema::drop('users');
     }
 }

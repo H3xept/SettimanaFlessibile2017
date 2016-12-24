@@ -33,6 +33,14 @@ Route::get('/tickets',['uses'=>'TicketsController@index'])->middleware('auth')->
 Route::post('/tickets/new',['uses'=>'TicketsController@store'])->middleware('auth')->name('new_ticket');
 Route::get('/tickets/{ticket_id}/delete',['uses'=>'TicketsController@delete'])->middleware('auth')->name('del_ticket');
 
+Route::get('/admin',function(){
+	$user = Auth::user();
+	if($user->hasEqualOrGreaterPermissionLevel(8)){
+		return view('admin.panel');
+	}
+	return route('home');
+
+})->middleware('auth')->name('admin_panel');
 //Temporary ---------
 Route::get('/courses/create', function () {
     return view('users.test');

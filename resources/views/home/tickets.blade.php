@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('navigation')
 <a href="{{route('home')}}" class="list-group-item">
 Profilo
@@ -7,6 +6,7 @@ Profilo
 <a href="{{route('courses')}}" class="list-group-item">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
 <a href="{{route('tickets')}}" class="list-group-item disabled">Aiuto</a>
+<br><a href="{{route('admin_panel')}}" class="list-group-item">Admin</a>
 @endsection
 
 @section('content')
@@ -103,6 +103,7 @@ Profilo
 		<h4 align="center">Nessuna richiesta.</h4>
 		</div>
 	  @endif
+
 <script>
 	window.setTimeout(function() {
 	    $("#alert").fadeTo(500, 0).slideUp(500, function(){
