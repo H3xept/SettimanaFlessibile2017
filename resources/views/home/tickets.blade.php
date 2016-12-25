@@ -6,7 +6,9 @@ Profilo
 <a href="{{route('courses')}}" class="list-group-item">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
 <a href="{{route('tickets')}}" class="list-group-item disabled">Aiuto</a>
+@if(Auth::user()->hasEqualOrGreaterPermissionLevel(8))
 <br><a href="{{route('admin_panel')}}" class="list-group-item">Admin</a>
+@endif
 @endsection
 
 @section('content')
@@ -18,6 +20,7 @@ Profilo
         $class = "alert-success";
         if($msg == "succ"){ $txt = "Ticket creato con successo. Riceverai una risposta al più presto.";}
         else if($msg == "err"){ $txt = "C'è stato un problema interno, contattare <a href='https://www.facebook.com/H3xept'> Leonardo Cascianelli </a> per ulteriori info."; $class = "alert-warning";}
+        else if($msg == "rekt"){$txt = "Ehy cosa pensi di fare?"; $class = "alert-warning";}
 
         echo '<div class="alert '.$class.'" id="alert" style="margin-bottom:24px;">
                 <button type="button" class="close" data-dismiss="alert">x</button>
@@ -85,6 +88,7 @@ Profilo
 		      </div>
 		      <div class="modal-body">
 		        <p>{{$ticket->desc}}</p>
+		        <p><b>{{$ticket->username}}: </b><i>{{$ticket->addr}}</i></p>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>

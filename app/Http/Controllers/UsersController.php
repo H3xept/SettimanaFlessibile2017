@@ -22,8 +22,12 @@ class UsersController extends Controller
     	return "Ye";
     }
 
-    public function sign(Request $request,$course_id){
+    public function sign(Request $request,$course_id, $user_id = NULL){
     	
+        if($user_id != NULL && Auth::user()->hasEqualOrGreaterPermissionLevel(8)){
+            $user = User::find($user_id);
+        }else{$user = Auth::user();}
+
         $input = $request->input();
         $course = DB::table('courses')->where('id',$course_id)->first();
         $max = $course->maxStudentsPerSession;
@@ -31,7 +35,6 @@ class UsersController extends Controller
         $session_signed = 0;
         $session_number = 0;
         $chosen_session = (isset($_POST['session_number'])) ? intval($input['session_number'])+1 : 0;
-        $user = Auth::user(); 
 
         if($course->type == 1){
             $stripes_codes = array("f1"=>$input['f1'],"f2"=>$input['f2'],"f3"=>$input['f3'],"f4"=>$input['f4'],
@@ -93,8 +96,12 @@ class UsersController extends Controller
 
     }
 
-    public function unsign(Request $request,$course_id,$session_number){
-        $user = Auth::user();
+    public function unsign(Request $request,$course_id,$session_number,$user_id = NULL){
+
+        if($user_id != NULL && Auth::user()->hasEqualOrGreaterPermissionLevel(8)){
+            $user = User::find($user_id);
+        }else{$user = Auth::user();}
+
         $user_sessions = $user->sessions();
 
         $course = DB::table('courses')->where('id',$course_id)->first();

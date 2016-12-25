@@ -62,7 +62,7 @@
 		  <div class="name"><label for="">{{$user->name}}</label>
 			  <span class="label label-success class">{{$user->class}}</span>
 			  <div class="pull-right">
-			  <span><a class="btn btn-primary btn-small" href=""><i class="fa fa-pencil"></i></a></span>
+			  <span><a class="btn btn-primary btn-small" href="/admin/{{$user->id}}"><i class="fa fa-pencil"></i></a></span>
 			  </div>
 		  </div>
 	  </div>

@@ -7,13 +7,14 @@ Profilo
 <a href="{{route('courses')}}" class="list-group-item">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
 <a href="{{route('tickets')}}" class="list-group-item">Aiuto</a>
+@if(Auth::user()->hasEqualOrGreaterPermissionLevel(8))
 <br><a href="{{route('admin_panel')}}" class="list-group-item">Admin</a>
+@endif
 @endsection
 
 
 @section('content')
 <?php 
-
 define('no_course_selected', '<a href="/courses">Nessun corso selezionato.</a>');
 
 $start = microtime(true);
@@ -36,6 +37,24 @@ foreach ($sessions as $key => $value) {
     $courses_name_array[$value['sessionNumber']] = $value['name'];
 }
 ?>
+
+
+    <?php
+        if(isset($_GET['msg'])){
+
+        $msg = htmlspecialchars($_GET['msg']);
+        $class = "alert-success";
+        if($msg == "succ"){ $txt = "Ticket creato con successo. Riceverai una risposta al più presto.";}
+        else if($msg == "err"){ $txt = "C'è stato un problema interno, contattare <a href='https://www.facebook.com/H3xept'> Leonardo Cascianelli </a> per ulteriori info."; $class = "alert-warning";}
+        else if($msg == "rekt"){$txt = "Ehy cosa pensi di fare?"; $class = "alert-warning";}
+
+        echo '<div class="alert '.$class.'" id="alert" style="margin-bottom:24px;">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                '.$txt.'
+                </div>';
+        }
+    ?>
+
 <div id="list-id" class="jumbotron" align="center" style=" border-color: #CCCCCC;border-width: 1px;border-style:solid;">
     <div align="left"><h3>Programmazione settimana</h3></div><hr>
   <table class="table table-hover">
@@ -176,4 +195,12 @@ foreach ($sessions as $key => $value) {
   </tbody>
 </table>
 </div>
+
+<script>
+    window.setTimeout(function() {
+        $("#alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 4000);
+</script>
 @endsection

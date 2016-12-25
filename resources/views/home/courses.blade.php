@@ -6,12 +6,14 @@
 <a href="{{route('courses')}}" class="list-group-item disabled">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
 <a href="{{route('tickets')}}" class="list-group-item">Aiuto</a><br>
-<a href="{{route('admin_panel')}}" class="list-group-item">Admin</a>
+@if(Auth::user()->hasEqualOrGreaterPermissionLevel(8))
+<br><a href="{{route('admin_panel')}}" class="list-group-item">Admin</a>
+@endif
 @endsection
 
 @section('content')
 <?php 
-
+use App\User;
 $modifiers = array(
 	"0"=>'<i class="fa fa-ban">',
     '1'=>'<label id="p" class="label label-warning" style="user-select: none; vertical-align: middle;"><i class="fa fa-close"></i>',
@@ -24,7 +26,18 @@ function shouldBeDisabled($ret){
 		return "disabled";
 	}else {return"";}
 }
+$behalf_user = NULL;
+$user_permission = NULL;
 ?>
+
+@if(isset($_GET['behalf_user']))
+@if(Auth::user()->hasEqualOrGreaterPermissionLevel(8))
+<?php $behalf_user = $_GET['behalf_user']; $b_user = User::find($behalf_user); $user_permission = Auth::user()->hasEqualOrGreaterPermissionLevel(8); ?>
+<div id="list-id" class="jumbotron" style="  border-color: #CCCCCC;border-width: 1px;border-style:solid; padding-top:8px; padding-bottom:8px;">
+<h4>Modificando per conto di: <i><b>{{$b_user->name}}</b> {{$b_user->class}}</i></h4>
+</div>
+@endif
+@endif
 
 @foreach($courses as $course)
 	<div id="list-id" class="jumbotron" style="  border-color: #CCCCCC;border-width: 1px;border-style:solid; padding-top:8px; padding-bottom:16px;">
@@ -150,7 +163,14 @@ function shouldBeDisabled($ret){
 	$("#{{$course->id}}form").submit(function(e) {
 	$button = $("#{{$course->id}}button");
 	$button.button('loading');
-    var url = "/courses/{{$course->id}}/sign";
+	$user_permission = <?php if ($user_permission) { echo $user_permission; } else { echo false; } ?>;
+	$behalf_user = <?php if ($behalf_user) { echo $behalf_user; } else { echo false; } ?>;
+	console.log($behalf_user);
+	if(($behalf_user) && $user_permission){
+		var url = "/courses/{{$course->id}}/sign/{{$behalf_user}}";
+	}else{
+    	var url = "/courses/{{$course->id}}/sign";
+	}
     $.ajax({
            type: "POST",
            url: url,
