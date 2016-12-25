@@ -61,6 +61,7 @@ class UsersController extends Controller
             $user->sessions()->attach($session_obj);
             $user->save();
             $session_obj->save();
+            echo "ok";
         }else{
             $stripes_codes = $input;
             $session_ids = array();
