@@ -163,10 +163,9 @@ $user_permission = NULL;
 	$("#{{$course->id}}form").submit(function(e) {
 	$button = $("#{{$course->id}}button");
 	$button.button('loading');
-	$user_permission = <?php if ($user_permission) { echo $user_permission; } else { echo false; } ?>;
-	$behalf_user = <?php if ($behalf_user) { echo $behalf_user; } else { echo false; } ?>;
-	console.log($behalf_user);
-	if(($behalf_user) && $user_permission){
+	$user_permission = <?php if (isset($user_permission)) { echo $user_permission; } else { echo 'undefined'; } ?>;
+	$behalf_user = <?php if (isset($behalf_user)) { echo $behalf_user; } else { echo 'undefined'; } ?>;
+	if(($behalf_user != 'undefined') && $user_permission != 'undefined'){
 		var url = "/courses/{{$course->id}}/sign/{{$behalf_user}}";
 	}else{
     	var url = "/courses/{{$course->id}}/sign";

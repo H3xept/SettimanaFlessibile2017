@@ -53,6 +53,9 @@ Route::get('/admin/{user_id}',function($user_id){
 
 })->middleware('auth')->name('user_edit');
 
+Route::get("/testimage",function(){
+	return view('testimage');
+});
 //Appelli
 Route::post('/appeals',function(Request $request){
 	$user = Auth::user();
