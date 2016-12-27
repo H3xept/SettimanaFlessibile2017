@@ -12,8 +12,8 @@
 @if(Auth::user()->hasEqualOrGreaterPermissionLevel(10))
 <div class="jumbotron" style="border-color:#CCCCCC;border-width:1px;border-style:solid; padding-top:8px; padding-bottom:8px;">
 <div class="row">
-	<div class="col-md-6 col-sm-12" align="center"><button class="btn btn-danger" id="loadCourses">Carica corsi</button></div>
-	<div class="col-md-6 col-sm-12" align="center"><a href="/admin/loadUsers" class="btn btn-danger">Carica Utenti</a></div>
+	<div class="col-md-6 col-sm-12" align="center"><button style="margin-top:8px; margin-bottom:8px;" class="btn btn-danger" id="loadCourses">Carica corsi</button></div>
+	<div class="col-md-6 col-sm-12" align="center"><button style="margin-top:8px; margin-bottom:8px;" href="/admin/loadUsers" id="loadUsers" class="btn btn-danger">Carica Utenti</button></div>
 </div>
 </div>
 @endif
