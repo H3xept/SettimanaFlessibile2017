@@ -57,7 +57,7 @@ p {
 		<div class="col-md-6 col-md-offset-3">
 			<div class="image" id="img-group">
 				
-			      <img class="img-rounded image" src="{{ URL::asset('/img/k.gif') }}" alt="" />
+			      <img class="img-rounded image" src="{{ URL::asset('/img/k.GIF') }}" alt="" />
 			      
 			      <div align="center"><br>
 			      <p class="stroke" id="txt">{{strtoupper($starting_text)}}</p>
