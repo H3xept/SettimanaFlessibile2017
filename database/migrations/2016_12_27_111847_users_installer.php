@@ -16,7 +16,7 @@ class UsersInstaller extends Migration
         Schema::create('users_installer', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('username')->unique();
+            $table->string('email')->unique();
             $table->string('class');
             $table->string('password');
         });

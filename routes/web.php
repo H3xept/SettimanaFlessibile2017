@@ -176,10 +176,10 @@ Route::get('/admin/edit/{user_id}',function($user_id){
 
 
 //Temporary ---------
-// Route::get('/courses/create', function () {
-//     return view('users.test');
-// })->middleware('auth');
-// Route::post('/storecourse',['uses'=>'CoursesController@store'])->middleware('auth');
+Route::get('/courses/create', function () {
+    return view('users.test');
+})->middleware('auth');
+Route::post('/storecourse',['uses'=>'CoursesController@store'])->middleware('auth');
 //Temporary ---------
 
 Auth::routes();
