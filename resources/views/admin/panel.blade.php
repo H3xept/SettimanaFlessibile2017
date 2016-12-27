@@ -9,6 +9,14 @@
 @endsection
 
 @section('content')
+@if(Auth::user()->hasEqualOrGreaterPermissionLevel(10))
+<div class="jumbotron" style="border-color:#CCCCCC;border-width:1px;border-style:solid; padding-top:8px; padding-bottom:8px;">
+<div class="row">
+	<div class="col-md-6 col-sm-12" align="center"><button class="btn btn-danger" id="loadCourses">Carica corsi</button></div>
+	<div class="col-md-6 col-sm-12" align="center"><a href="/admin/loadUsers" class="btn btn-danger">Carica Utenti</a></div>
+</div>
+</div>
+@endif
 <div class="jumbotron" style="border-color:#CCCCCC;border-width:1px;border-style:solid; padding-top:8px; padding-bottom:8px;">
 <form action="{{route('get_classes')}}" method="POST">
 {{csrf_field()}}
@@ -62,7 +70,7 @@
 		  <div class="name"><label for="">{{$user->name}}</label>
 			  <span class="label label-success class">{{$user->class}}</span>
 			  <div class="pull-right">
-			  <span><a class="btn btn-primary btn-small" href="/admin/{{$user->id}}"><i class="fa fa-pencil"></i></a></span>
+			  <span><a class="btn btn-primary btn-small" href="/admin/edit/{{$user->id}}"><i class="fa fa-pencil"></i></a></span>
 			  </div>
 		  </div>
 	  </div>
@@ -80,6 +88,36 @@
     valueNames: [ 'name', 'class' ]
 };
 var users_list = new List('users-list', options);
+</script>
+<script type="text/javascript">
+	$("#loadCourses").click(function(e) {
+	var url = "/admin/loadCourses";
+    $.ajax({
+           type: "GET",
+           url: url,
+           data: $(this).serialize(),
+           success: function(data)
+           {
+			alert("ok");
+           }
+         });
+    e.preventDefault();
+	});
+</script>
+<script type="text/javascript">
+	$("#loadUsers").click(function(e) {
+	var url = "/admin/loadUsers";
+    $.ajax({
+           type: "GET",
+           url: url,
+           data: $(this).serialize(),
+           success: function(data)
+           {
+			alert("ok");
+           }
+         });
+    e.preventDefault();
+	});
 </script>
 
 @endsection
