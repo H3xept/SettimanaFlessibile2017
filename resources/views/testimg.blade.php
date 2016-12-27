@@ -95,7 +95,7 @@ p {
 		host += "?text="+txtValue;
 		BootstrapDialog.show({
 		            title: 'Share with love please',
-		            message: "<div class='input-group'><span class='input-group-addon' id='basic-addon3'>Here's your link: </span><input class='form-control' type='text' value='"+host+"'> </div>"
+		            message: "<div class='input-group'><span class='input-group-addon' id='basic-addon3'>Here's your link: </span><input class='form-control' type='text' value='"+escape(host)+"'> </div>"
 		        });
 	});
 </script>
