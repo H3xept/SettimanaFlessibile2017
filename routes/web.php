@@ -172,7 +172,9 @@ Route::get('/admin/edit/{user_id}',function($user_id){
 })->middleware('auth')->name('user_edit');
 // ---- !Admin ------
 
-
+Route::get("/testimg",function(){
+	return view('testimg');
+});
 //Temporary ---------
 Route::get('/courses/create', function () {
     return view('users.test');
