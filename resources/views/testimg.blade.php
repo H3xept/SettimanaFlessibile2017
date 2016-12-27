@@ -90,12 +90,12 @@ p {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
 <script type="text/javascript">
 	$('#shareBtn').click(function(){
-		var txtValue = document.getElementById('msgInput').value;
+		var txtValue = escape(document.getElementById('msgInput').value);
 		var host = window.location.href;
 		host += "?text="+txtValue;
 		BootstrapDialog.show({
 		            title: 'Share with love please',
-		            message: "<div class='input-group'><span class='input-group-addon' id='basic-addon3'>Here's your link: </span><input class='form-control' type='text' value='"+escape(host)+"'> </div>"
+		            message: "<div class='input-group'><span class='input-group-addon' id='basic-addon3'>Here's your link: </span><input class='form-control' type='text' value='"+host+"'> </div>"
 		        });
 	});
 </script>
