@@ -45,6 +45,12 @@ class RoleUser extends Migration
                     'level' => 1
                 )
             ));
+        DB::table('role_user')->insert(array(
+                 array(
+                     'user_id'=>1,
+                     'role_id'=>1
+                 )
+             ));
 
     }
 

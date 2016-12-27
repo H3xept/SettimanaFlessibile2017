@@ -22,10 +22,8 @@ Route::get('/home', function () {
 })->middleware('auth');//Redundant
 
 Route::get('/courses', function () {
-	$start = microtime(true);
 	$courses = DB::table('courses')->get();
-    $time_elapsed_secs = microtime(true) - $start;
-    return view('home.courses')->with(['courses'=>$courses,'time'=>$time_elapsed_secs]);
+    return view('home.courses')->with(['courses'=>$courses]);
 })->middleware('auth')->name('courses');
 
 Route::post('/courses/{course_id}/sign/{user_id?}',['uses'=>'UsersController@sign'])->middleware('auth')->name('sign');
@@ -76,7 +74,7 @@ Route::get("/admin/loadUsers",function(){
 			"created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now()];
 			DB::table('users')->insert($data);
-		}
+		}return Redirect::route('admin_panel',['msg'=>'ok']);
 		
 	}
 	return Redirect::route('home',['msg'=>'rekt']);

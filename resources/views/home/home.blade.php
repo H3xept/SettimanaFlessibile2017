@@ -17,7 +17,6 @@ Profilo
 <?php 
 define('no_course_selected', '<a href="/courses">Nessun corso selezionato.</a>');
 
-$start = microtime(true);
 $sessions = Auth::user()->sessions()->join('courses','courses.id','=','course_id')->select(array('sessions.*','courses.name'))->get()->toArray();
 $courses_name_array = array();
 $courses_id_session_array = array();
@@ -31,8 +30,6 @@ foreach($sessions as $key=>$session){
         }
     }
 }
-$time_elapsed_secs = microtime(true) - $start;
-echo $time_elapsed_secs;
 foreach ($sessions as $key => $value) {
     $courses_name_array[$value['sessionNumber']] = $value['name'];
 }

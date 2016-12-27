@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('navigation')
-{{$time}}
 <a href="{{route('home')}}" class="list-group-item">Profilo</a>
 <a href="{{route('courses')}}" class="list-group-item disabled">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
