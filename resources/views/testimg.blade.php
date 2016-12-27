@@ -26,7 +26,12 @@
 
 
 <style type="text/css">
-	.image { 
+@font-face {
+    font-family: "Impact2";
+    src: url("/fonts/impact.ttf") format("truetype");
+}
+
+.image { 
    position: relative; 
    width: 100%; /* for IE 6 */
    height:100%;
@@ -36,7 +41,7 @@ p {
    top: 20px; 
    width: 100%; 
    color: white;
-   font-family: Impact;
+   font-family: Impact,"Impact2";
    letter-spacing: 2px;
    font-size: 38px;
 }
@@ -49,6 +54,8 @@ p {
     -1px 1px 0 #000,
     1px 1px 0 #000;  
 }
+
+
 </style>
 
 <?php $starting_text = "Make me proud."; if(isset($_GET['text'])){$starting_text = htmlspecialchars(pg_escape_string($_GET['text']));} ?>
