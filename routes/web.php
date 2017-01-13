@@ -65,16 +65,21 @@ Route::post('/appeals',function(Request $request){
 Route::get("/admin/loadUsers",function(){
 	$user = Auth::user();
 	if($user->hasEqualOrGreaterPermissionLevel(10)){
+		ini_set('max_execution_time', 120);
 		$users = DB::table('users_installer')->get()->toArray();
+		$users_array = array();
 		foreach ($users as $user_) {
 			$data = ['name'=>$user_->name,
-			'email'=>$user_->email,
+			'surname'=>$user_->surname,
+			'username'=>$user_->username,
 			'class'=>$user_->class,
 			'password'=>Hash::make($user_->password),
 			"created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now()];
-			DB::table('users')->insert($data);
-		}return Redirect::route('admin_panel',['msg'=>'ok']);
+            $users_array[] = $data;
+		}
+		DB::table('users')->insert($users_array);
+		return Redirect::route('admin_panel',['msg'=>'ok']);
 		
 	}
 	return Redirect::route('home',['msg'=>'rekt']);
