@@ -18,8 +18,8 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->longText('desc'); //Description
             $table->longText('ref'); //Referents
-            $table->longText('pRef'); //Professors
-            $table->longText('ext'); //Externals
+            $table->longText('pRef')->nullable(); //Professors
+            $table->longText('ext')->nullable(); //Externals
             $table->boolean('type'); //Progressive == 1
             $table->smallInteger('f1'); //Lun 2
             $table->smallInteger('f2'); //Lun 3

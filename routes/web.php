@@ -66,6 +66,7 @@ Route::get("/admin/loadUsers",function(){
 	$user = Auth::user();
 	if($user->hasEqualOrGreaterPermissionLevel(10)){
 		ini_set('max_execution_time', 120);
+		DB::table('users')->truncate();
 		$users = DB::table('users_installer')->get()->toArray();
 		$users_array = array();
 		foreach ($users as $user_) {
@@ -89,19 +90,24 @@ Route::get("/admin/loadCourses",function(){
 
 	$user = Auth::user();
 	if($user->hasEqualOrGreaterPermissionLevel(10)){
+		ini_set('max_execution_time', 120);
+		DB::statement('SET FOREIGN_KEY_CHECKS=0');
+		DB::table('session_user')->truncate();
+		DB::table('sessions')->truncate();
+		DB::table('courses')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS=1');
 		$rows = DB::table('courses_installer')->get();
-		
 		foreach ($rows as $request) {
+
 	    	$course = new Course;
 	    	$course->name = $request->name;
 	    	$course->desc = $request->desc;
 	    	$course->ref = $request->ref;
 	    	$course->pRef = $request->pRef;
 	    	$course->ext = $request->ext;
-	    	if($request->type == "p") { $type = 1; }else{ $type = 0; }
-	    	$course->type = $type;
+	    	$course->type = $request->type;
 
-	        if($type == 1){//progressive
+	        if($course->type == 1){//progressive
 	            $course->f1 = $request->f1 ?? 0;
 	            $course->f2 = $request->f2 ?? 0;
 	            $course->f3 = $request->f3 ?? 0;
