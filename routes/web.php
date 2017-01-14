@@ -135,7 +135,8 @@ Route::get("/admin/loadCourses",function(){
 	    	$course->pRef = $request->pRef;
 	    	$course->ext = $request->ext;
 	    	$course->type = $request->type;
-
+	    	$course->maxStudentsPerSession = $request->maxStudentsPerSession;
+	    	
 	        if($course->type == 1){//progressive
 	            $course->f1 = $request->f1 ?? 0;
 	            $course->f2 = $request->f2 ?? 0;
