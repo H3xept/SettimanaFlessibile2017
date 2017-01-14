@@ -19,17 +19,9 @@ Profilo
 <p>la prima cosa da fare è scegliere i corsi che vorrai frequentare, facendo attenzione a non scegliere più di un corso per fascia per evitare una sovrapposizione.</p><hr>
 <h3>I corsi possono essere: </h3>
 <ul>
-	<li>A fascia singola: un corso che dura due ore
+	<li>A fasce (ogni fascia è da 2 ore e ci si può iscrivere a più di una)
 	</li>
-	<li>A fascia doppia: un corso che dura quattro ore
-	</li>
-	<li>Giornaliero: un corso che occupa tutto il giorno ( a fascia tripla)
-	</li>
-	<li>Progressivo a  fascia singola : un corso che occupa una stessa fascia per tutti e tre i giorni
-	</li>
-	<li>Progressivo a fascia doppia : un corso che occupa due fasce consecutive  al giorno (ad esempio la prima e la seconda fascia) per tutti e tre i giorni
-	</li>
-	<li>Progressivo a fascia tripla: un corso che occupa tutte e tre le fasce per tutti e tre i giorni (giornaliero progressivo)
+	<li>Progressivo (un corso che presuppone la presenza in tutte le fasce del colore scelto)
 	</li>
 </ul><br>
 <div class="alert alert-warning" role="alert"> Ogni colore corrisponde ad un appello, quindi scegliendo un colore ti inscriverai a tutte le fasce (del corso) corrispondenti a quel colore.</div>
