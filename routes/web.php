@@ -34,6 +34,10 @@ Route::get('/tickets',['uses'=>'TicketsController@index'])->middleware('auth')->
 Route::post('/tickets/new',['uses'=>'TicketsController@store'])->middleware('auth')->name('new_ticket');
 Route::get('/tickets/{ticket_id}/delete',['uses'=>'TicketsController@delete'])->middleware('auth')->name('del_ticket');
 
+Route::get('/istruzioni',function(){
+	return view('home.info');
+})->name('info');
+
 // ---- Admin ------
 Route::get('/admin',function(){
 	$user = Auth::user();
@@ -66,7 +70,11 @@ Route::get("/admin/loadUsers",function(){
 	$user = Auth::user();
 	if($user->hasEqualOrGreaterPermissionLevel(10)){
 		ini_set('max_execution_time', 120);
+		DB::statement('SET FOREIGN_KEY_CHECKS=0');
 		DB::table('users')->truncate();
+		DB::table('role_user')->truncate();
+		DB::table('session_user')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS=1');
 		$users = DB::table('users_installer')->get()->toArray();
 		$users_array = array();
 		foreach ($users as $user_) {
@@ -80,6 +88,27 @@ Route::get("/admin/loadUsers",function(){
             $users_array[] = $data;
 		}
 		DB::table('users')->insert($users_array);
+
+       	DB::table('users')->insert(array(
+                array(
+                    'name' => 'Leonardo',
+                    'surname' => 'Cascianelli',
+                    'username' => "H3xept",
+                    'class' => "5L",
+                    'password' => "Change me"
+                )
+            ));
+       	$roles = [];
+       	for ($i=0; $i < count($users); $i++) { 
+       		$roles[] = array('user_id' => $i+1,'role_id' => 3);
+       	}
+       	DB::table('role_user')->insert($roles);
+        DB::table('role_user')->insert(array(
+                 array(
+                     'user_id'=>1448,
+                     'role_id'=>1
+                 )
+             ));
 		return Redirect::route('admin_panel',['msg'=>'ok']);
 		
 	}

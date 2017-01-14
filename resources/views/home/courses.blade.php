@@ -3,7 +3,7 @@
 @section('navigation')
 <a href="{{route('home')}}" class="list-group-item">Profilo</a>
 <a href="{{route('courses')}}" class="list-group-item disabled">Corsi disponibili</a>
-<a href="#" class="list-group-item">Istruzioni</a>
+<a href="{{route('info')}}" class="list-group-item">Istruzioni</a>
 <a href="{{route('tickets')}}" class="list-group-item">Aiuto</a><br>
 @if(Auth::user()->hasEqualOrGreaterPermissionLevel(8))
 <br><a href="{{route('admin_panel')}}" class="list-group-item">Admin</a>
@@ -38,6 +38,22 @@ $user_permission = NULL;
 @endif
 @endif
 
+    <?php
+        if(isset($_GET['msg'])){
+
+        $msg = htmlspecialchars($_GET['msg']);
+        $class = "alert-success";
+        if($msg == "succ"){ $txt = "Ticket creato con successo. Riceverai una risposta al più presto.";}
+        else if($msg == "err"){ $txt = "C'è stato un problema interno, contattare <a href='https://www.facebook.com/H3xept'> Leonardo Cascianelli </a> per ulteriori info."; $class = "alert-warning";}
+        else if($msg == "rekt"){$txt = "Ehy cosa pensi di fare?"; $class = "alert-warning";}
+
+        echo '<div class="alert '.$class.'" id="alert" style="margin-bottom:24px;">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                '.$txt.'
+                </div>';
+        }
+    ?>
+    
 @foreach($courses as $course)
 	<div id="list-id" class="jumbotron" style="  border-color: #CCCCCC;border-width: 1px;border-style:solid; padding-top:8px; padding-bottom:16px;">
 		<h3>{{$course->name}} <small>{{$course->ref}}</small></h3>
@@ -51,13 +67,35 @@ $user_permission = NULL;
 		        <h4 class="modal-title">Problemi con <i>{{$course->name}}</i> ?</h4>
 		      </div>
 		      <div class="modal-body">
-		        <p>No help for you.</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-		      </div>
-		    </div>
 
+	      <form action="{{route('new_ticket')}}" method="POST" id="createForm{{$course->id}}">
+	      	{{csrf_field()}}
+			<div class="form-group">
+			  <label for="usr">Oggetto</label>
+			  <input type="text" class="form-control" id="title" name="title" value="{{$course->name}}" required readonly>
+			</div>
+			<div class="form-group">
+			  <label for="comment">Descrivi il tuo problema</label>
+			  <textarea class="form-control" rows="6" id="desc" name="desc" required></textarea>
+			</div>
+			<div class="form-group">
+			  <label for="usr">Come possiamo contattarti? (Email, telefono...)</label>
+			  <input type="text" class="form-control" id="addr" name="addr" required>
+			</div>
+			<input type="text" name="username" hidden="true" value="{{Auth::user()->name}}">
+	     
+
+		      </div>
+	      <div class="modal-footer">
+	      	<button id="createButton{{$course->id}}" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-success">Invia</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+	      </div>
+	       </form>
+		    </div>
+<script type="text/javascript">
+    $("#createForm{{$course->id}}").submit(function(e){ var url = "/tickets/new"; $("#createButton{{$course->id}}").button('loading'); 
+    	$.ajax({type: "POST",url: url,data: $(this).serialize(),success: function(data){window.location = "/courses?msg=succ"},error: function(){$("#createButton{{$course->id}}").button('reset'); window.location = "/courses?msg=err"}}); e.preventDefault();});
+</script>
 		  </div>
 		</div>
 

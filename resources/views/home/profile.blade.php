@@ -4,6 +4,7 @@
 <a href="{{route('home')}}" class="list-group-item disabled">
 Profilo
 </a>
+<a href="{{route('info')}}" class="list-group-item">Istruzioni</a>
 <a href="#" class="list-group-item">Corsi disponibili</a>
 <a href="#" class="list-group-item">Istruzioni</a>
 @endsection
