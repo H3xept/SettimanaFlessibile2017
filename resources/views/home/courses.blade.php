@@ -244,7 +244,7 @@ $usr = Auth::user()->username;
            error: function(data)
            {
 			$button.button('reset');
-           	$string = "";
+           	$string = data;
            	if(data == "ok"){$string = "Registrazione avvenuta."; $("#{{$course->id}}register").modal('hide');}
            	else if(data == "full"){$string = "Il corso è pieno per le fasce selezionate.";}
            	else if(data == "empty"){$string = "Nessuna fascia selezionata!";}
