@@ -94,14 +94,14 @@ $usr = Auth::user()->username;
 
 		      </div>
 	      <div class="modal-footer">
-	      	<button id="createButton{{$course->id}}" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-success">Invia</button>
+	      	<button id="createButtonTicket{{$course->id}}" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-success">Invia</button>
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
 	      </div>
 	       </form>
 		    </div>
 <script type="text/javascript">
-    $("#createForm{{$course->id}}").submit(function(e){ var url = "/tickets/new"; $("#createButton{{$course->id}}").button('loading'); 
-    	$.ajax({type: "POST",url: url,data: $(this).serialize(),success: function(data){window.location = "/courses?msg=succ"},error: function(){$("#createButton{{$course->id}}").button('reset'); window.location = "/courses?msg=err"}}); e.preventDefault();});
+    $("#createForm{{$course->id}}").submit(function(e){ var url = "/tickets/new"; $("#createButtonTicket{{$course->id}}").button('loading'); 
+    	$.ajax({type: "POST",url: url,data: $(this).serialize(),success: function(data){window.location = "/courses?msg=succ"},error: function(){$("#createButtonTicket{{$course->id}}").button('reset'); window.location = "/courses?msg=err"}}); e.preventDefault();});
 </script>
 		  </div>
 		</div>
@@ -121,7 +121,7 @@ $usr = Auth::user()->username;
 		        <p>{{$course->ref}}</p>
 		        <hr>
 
-		        <form id="{{$course->id}}form" action="/courses/{{$course->id}}/sign/" method="POST">
+		        <form id="{{$course->id}}form">
 		        {{csrf_field()}}
 		        	@if($course->type == 1)
 		        	<div align="center">
@@ -205,6 +205,7 @@ $usr = Auth::user()->username;
 
 <script type="text/javascript">
 	$("#{{$course->id}}form").submit(function(e) {
+		e.preventDefault();
 	$button = $("#{{$course->id}}button");
 	$button.button('loading');
 	$user_permission = <?php if (isset($user_permission)) { echo $user_permission; } else { echo 'undefined'; } ?>;
@@ -259,8 +260,6 @@ $usr = Auth::user()->username;
 			},4000);
            }
          });
-
-    e.preventDefault();
 	});
 </script>
 		    </div>
