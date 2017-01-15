@@ -213,11 +213,11 @@ $usr = Auth::user()->username;
 	if(($behalf_user != 'undefined') && $user_permission != 'undefined'){
 		var url = "/courses/{{$course->id}}/sign/{{$behalf_user}}";
 	}else{
-    	var url = "/courses/{{$course->id}}/sign/";
+    	var url = "/courses/{{$course->id}}/sign";
 	}
     $.ajax({
            type: "POST",
-           url: "https://settimanaflessibile.me/courses/1/sign",
+           url: url,
            data: $(this).serialize(),
            success: function(data)
            {
