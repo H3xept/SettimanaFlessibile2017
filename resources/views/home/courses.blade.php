@@ -211,9 +211,9 @@ $usr = Auth::user()->username;
 	$user_permission = <?php if (isset($user_permission)) { echo $user_permission; } else { echo 'undefined'; } ?>;
 	$behalf_user = <?php if (isset($behalf_user)) { echo $behalf_user; } else { echo 'undefined'; } ?>;
 	if(($behalf_user != 'undefined') && $user_permission != 'undefined'){
-		var url = "/courses/{{$course->id}}/sign/{{$behalf_user}}";
+		var url = "https://settimanaflessibile.me/courses/{{$course->id}}/sign/{{$behalf_user}}";
 	}else{
-    	var url = "/courses/{{$course->id}}/sign";
+    	var url = "https://settimanaflessibile.me/courses/{{$course->id}}/sign";
 	}
     $.ajax({
            type: "POST",
