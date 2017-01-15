@@ -99,10 +99,10 @@ $usr = Auth::user()->username;
 	      </div>
 	       </form>
 		    </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $("#createForm{{$course->id}}").submit(function(e){ var url = "/tickets/new"; $("#createButtonTicket{{$course->id}}").button('loading'); 
     	$.ajax({type: "POST",url: url,data: $(this).serialize(),success: function(data){window.location = "/courses?msg=succ"},error: function(){$("#createButtonTicket{{$course->id}}").button('reset'); window.location = "/courses?msg=err"}}); e.preventDefault();});
-</script>
+</script> -->
 		  </div>
 		</div>
 
@@ -203,7 +203,7 @@ $usr = Auth::user()->username;
 			      </div>
 		      </form>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$("#{{$course->id}}form").submit(function(e) {
 		e.preventDefault();
 	$button = $("#{{$course->id}}button");
@@ -262,7 +262,7 @@ $usr = Auth::user()->username;
            }
          });
 	});
-</script> -->
+</script>
 		    </div>
 
 		  </div>
