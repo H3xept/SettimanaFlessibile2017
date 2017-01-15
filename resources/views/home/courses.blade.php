@@ -75,7 +75,7 @@ $usr = Auth::user()->username;
 		      </div>
 		      <div class="modal-body">
 
-	      <form action="{{route('new_ticket')}}" method="POST" id="createForm{{$course->id}}">
+	      <form id="createForm{{$course->id}}">
 	      	{{csrf_field()}}
 			<div class="form-group">
 			  <label for="usr">Oggetto</label>
