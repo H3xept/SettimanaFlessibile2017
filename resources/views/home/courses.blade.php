@@ -203,7 +203,7 @@ $usr = Auth::user()->username;
 			      </div>
 		      </form>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$("#{{$course->id}}form").submit(function(e) {
 		e.preventDefault();
 	$button = $("#{{$course->id}}button");
@@ -216,7 +216,6 @@ $usr = Auth::user()->username;
 	}else{
     	url = "/courses/{{$course->id}}/sign/";
 	}
-	console.log(url);
     $.ajax({
            type: "POST",
            url: url,
@@ -263,7 +262,7 @@ $usr = Auth::user()->username;
            }
          });
 	});
-</script>
+</script> -->
 		    </div>
 
 		  </div>
