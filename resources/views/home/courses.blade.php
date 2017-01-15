@@ -217,7 +217,7 @@ $usr = Auth::user()->username;
 	}
     $.ajax({
            type: "POST",
-           url: url,
+           url: "http://settimanaflessibile.me/courses/1/sign",
            data: $(this).serialize(),
            success: function(data)
            {
