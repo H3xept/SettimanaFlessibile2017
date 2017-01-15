@@ -214,7 +214,6 @@ $usr = Auth::user()->username;
 	}else{
     	var url = "/courses/{{$course->id}}/sign/";
 	}
-	console.log("MA DIOCANE");
     $.ajax({
            type: "POST",
            url: url,
