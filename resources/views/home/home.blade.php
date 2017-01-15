@@ -33,15 +33,7 @@ foreach($sessions as $key=>$session){
 foreach ($sessions as $key => $value) {
     $courses_name_array[$value['sessionNumber']] = $value['name'];
 }
-$refin = Auth::user()->refin;
-if($refin != null){
-    $refin = explode(",",$refin);
-    $refin_courses = [];
-    foreach ($refin as $refin_number) {
-        $course = DB::table('courses')->where('id',$refin_number)->select('name','desc','ref')->get()->first();
-    }
-
-}
+$refin = explode(",",Auth::user()->refin);
 ?>
 
 
@@ -77,8 +69,10 @@ if($refin != null){
         <td>2°</td>
         @if(isset($courses_name_array['f1']))
         <?php $f1Course = DB::table('courses')->where('id',$courses_id_array['f1'][0])->select('name','desc','ref')->first();?>
-        <td><a href="#" data-toggle="modal" data-target="#0register">{{$courses_name_array['f1']}}</a><button id="f1Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f1'][0]}}/{{$courses_id_array['f1'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#0register">{{$courses_name_array['f1']}}</a>
+        @if(!in_array($courses_id_array['f1'][0],$refin))
+        <button id="f1Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f1'][0]}}/{{$courses_id_array['f1'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="0register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -111,8 +105,10 @@ if($refin != null){
         @if(isset($courses_name_array['f2']))
         <?php $f2Course = DB::table('courses')->where('id',$courses_id_array['f2'][0])->select('name','desc','ref')->first();?>
 
-        <td><a href="#" data-toggle="modal" data-target="#1register">{{$courses_name_array['f2']}}</a><button id="f2Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f2'][0]}}/{{$courses_id_array['f2'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#1register">{{$courses_name_array['f2']}}</a>
+        @if(!in_array($courses_id_array['f2'][0],$refin))
+        <button id="f2Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f2'][0]}}/{{$courses_id_array['f2'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="1register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -143,8 +139,10 @@ if($refin != null){
         <td>2°</td>
         @if(isset($courses_name_array['f3']))
         <?php $f3Course = DB::table('courses')->where('id',$courses_id_array['f3'][0])->select('name','desc','ref')->first();?>
-        <td><a href="#" data-toggle="modal" data-target="#2register">{{$courses_name_array['f3']}}</a><button id="f3Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f3'][0]}}/{{$courses_id_array['f3'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#2register">{{$courses_name_array['f3']}}</a>
+        @if(!in_array($courses_id_array['f3'][0],$refin))
+        <button id="f3Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f3'][0]}}/{{$courses_id_array['f3'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="2register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -175,8 +173,10 @@ if($refin != null){
         <td>3°</td>
         @if(isset($courses_name_array['f4']))
         <?php $f4Course = DB::table('courses')->where('id',$courses_id_array['f4'][0])->select('name','desc','ref')->first();?>
-        <td><a href="#" data-toggle="modal" data-target="#3register">{{$courses_name_array['f4']}}</a><button class="btn btn-danger pull-right" id="f4Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" href="/courses/{{$courses_id_array['f4'][0]}}/{{$courses_id_array['f4'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#3register">{{$courses_name_array['f4']}}</a>
+        @if(!in_array($courses_id_array['f4'][0],$refin))
+        <button class="btn btn-danger pull-right" id="f4Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" href="/courses/{{$courses_id_array['f4'][0]}}/{{$courses_id_array['f4'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="3register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -207,8 +207,10 @@ if($refin != null){
         <td>2°</td>
         @if(isset($courses_name_array['f5']))
         <?php $f5Course = DB::table('courses')->where('id',$courses_id_array['f5'][0])->select('name','desc','ref')->first();?>
-        <td><a href="#" data-toggle="modal" data-target="#4register">{{$courses_name_array['f5']}}</a><button id="f5Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f5'][0]}}/{{$courses_id_array['f5'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#4register">{{$courses_name_array['f5']}}</a>
+        @if(!in_array($courses_id_array['f5'][0],$refin))
+        <button id="f5Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f5'][0]}}/{{$courses_id_array['f5'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="4register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -239,8 +241,10 @@ if($refin != null){
         <td>3°</td>
         @if(isset($courses_name_array['f6']))
         <?php $f6Course = DB::table('courses')->where('id',$courses_id_array['f6'][0])->select('name','desc','ref')->first();?>
-        <td><a href="#" data-toggle="modal" data-target="#5register">{{$courses_name_array['f6']}}</a><button id="f6Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f6'][0]}}/{{$courses_id_array['f6'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#5register">{{$courses_name_array['f6']}}</a>
+        @if(!in_array($courses_id_array['f6'][0],$refin))
+        <button id="f6Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f6'][0]}}/{{$courses_id_array['f6'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="5register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -271,8 +275,10 @@ if($refin != null){
         <td>1°</td>
         @if(isset($courses_name_array['f7']))
         <?php $f7Course = DB::table('courses')->where('id',$courses_id_array['f7'][0])->select('name','desc','ref')->first();?>
-        <td><a href="#" data-toggle="modal" data-target="#6register">{{$courses_name_array['f7']}}</a><button id="f7Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f7'][0]}}/{{$courses_id_array['f7'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#6register">{{$courses_name_array['f7']}}</a>
+        @if(!in_array($courses_id_array['f7'][0],$refin))
+        <button id="f7Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f7'][0]}}/{{$courses_id_array['f7'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="6register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -303,8 +309,10 @@ if($refin != null){
         <td>2°</td>
         @if(isset($courses_name_array['f8']))
         <?php $f8Course = DB::table('courses')->where('id',$courses_id_array['f8'][0])->select('name','desc','ref')->first();?>
-        <td><a href="#" data-toggle="modal" data-target="#7register">{{$courses_name_array['f8']}}</a><button id="f8Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f8'][0]}}/{{$courses_id_array['f8'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#7register">{{$courses_name_array['f8']}}</a>
+        @if(!in_array($courses_id_array['f8'][0],$refin))
+        <button id="f8Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f8'][0]}}/{{$courses_id_array['f8'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="7register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -335,8 +343,10 @@ if($refin != null){
         <td>3°</td>
         @if(isset($courses_name_array['f9']))
         <?php $f9Course = DB::table('courses')->where('id',$courses_id_array['f9'][0])->select('name','desc','ref')->first();?>
-        <td><a href="#" data-toggle="modal" data-target="#8register">{{$courses_name_array['f9']}}</a><button id="f9Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f9'][0]}}/{{$courses_id_array['f9'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
-
+        <td><a href="#" data-toggle="modal" data-target="#8register">{{$courses_name_array['f9']}}</a>
+        @if(!in_array($courses_id_array['f9'][0],$refin))
+        <button id="f9Button" data-loading-text="<i class='fa fa-spinner fa-spin'>" class="btn btn-danger pull-right" href="/courses/{{$courses_id_array['f9'][0]}}/{{$courses_id_array['f9'][1]}}/unsign"><i class="fa fa-trash"></i></button></td>
+        @endif
         <div id="8register" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">

@@ -13,6 +13,7 @@
 use App\Course;
 use Illuminate\Http\Request;
 use App\Session;
+use App\User;
 
 Route::get('/', function () {
     return view('home.home');
@@ -66,6 +67,24 @@ Route::post('/appeals',function(Request $request){
 	return Redirect::route('home',['msg'=>'rekt']);
 })->middleware('auth')->name('get_classes');
 
+Route::get("/admin/loadRefs",function(){
+		DB::statement('SET FOREIGN_KEY_CHECKS=0');
+		$users = User::all();
+		foreach ($users as $user) {
+		foreach (explode(",",$user->refin) as $refin_number) {
+			$course_ = DB::table('courses')->where('id',$refin_number)->first();
+			// $sessions_ = DB::table('sessions')->where('course_id',$refin_number)->get();
+			$sessions_ = Session::where('course_id',$refin_number)->get();
+			foreach ($sessions_ as $session_) {
+				if($session_ != null){
+					$user->sessions()->attach($session_);
+				}
+			}
+		}
+		}
+		DB::statement('SET FOREIGN_KEY_CHECKS=1');
+});
+
 Route::get("/admin/loadUsers",function(){
 	$user = Auth::user();
 	if($user->hasEqualOrGreaterPermissionLevel(10)){
@@ -82,7 +101,8 @@ Route::get("/admin/loadUsers",function(){
 			'surname'=>$user_->surname,
 			'username'=>$user_->username,
 			'class'=>$user_->class,
-			'password'=>Hash::make($user_->password),
+			'refin'=>$user_->refin,
+			'password'=>"\$2y\$10\$fuF3zzeLyXpnQL7IFre52OkKIIRYqouTGWYF8SXcuGLwijbP/EfEG",
 			"created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now()];
             $users_array[] = $data;
@@ -91,6 +111,7 @@ Route::get("/admin/loadUsers",function(){
 
        	DB::table('users')->insert(array(
                 array(
+                	'id'=>1448,
                     'name' => 'Leonardo',
                     'surname' => 'Cascianelli',
                     'username' => "H3xept",
@@ -109,9 +130,11 @@ Route::get("/admin/loadUsers",function(){
                      'role_id'=>1
                  )
              ));
+
 		return Redirect::route('admin_panel',['msg'=>'ok']);
 		
 	}
+
 	return Redirect::route('home',['msg'=>'rekt']);
 })->middleware('auth')->name('loadUsers');
 
