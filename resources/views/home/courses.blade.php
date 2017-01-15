@@ -244,6 +244,11 @@ $usr = Auth::user()->username;
            error: function(data)
            {
 			$button.button('reset');
+           	$string = "";
+           	if(data == "ok"){$string = "Registrazione avvenuta."; $("#{{$course->id}}register").modal('hide');}
+           	else if(data == "full"){$string = "Il corso è pieno per le fasce selezionate.";}
+           	else if(data == "empty"){$string = "Nessuna fascia selezionata!";}
+           	else if(data == "already_reg"){$string = "Hai già un corso per una o più fasce selezionate.";}
 			var dialog = new BootstrapDialog()
 			            .setTitle('Attenzione')
 			            .setMessage($string)
