@@ -210,10 +210,11 @@ $usr = Auth::user()->username;
 	$button.button('loading');
 	$user_permission = <?php if (isset($user_permission)) { echo $user_permission; } else { echo 'undefined'; } ?>;
 	$behalf_user = <?php if (isset($behalf_user)) { echo $behalf_user; } else { echo 'undefined'; } ?>;
+	var url = ""
 	if(($behalf_user != 'undefined') && $user_permission != 'undefined'){
-		var url = "https://settimanaflessibile.me/courses/{{$course->id}}/sign/{{$behalf_user}}";
+		url = "/courses/{{$course->id}}/sign/{{$behalf_user}}";
 	}else{
-    	var url = "https://settimanaflessibile.me/courses/{{$course->id}}/sign";
+    	url = "/courses/{{$course->id}}/sign/";
 	}
 	console.log(url);
     $.ajax({
