@@ -215,6 +215,7 @@ $usr = Auth::user()->username;
 	}else{
     	var url = "https://settimanaflessibile.me/courses/{{$course->id}}/sign";
 	}
+	console.log(url);
     $.ajax({
            type: "POST",
            url: url,
