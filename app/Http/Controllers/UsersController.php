@@ -24,7 +24,6 @@ class UsersController extends Controller
 
     public function sign(Request $request,$course_id, $user_id = NULL){
     	
-        dd($request);
         if($user_id != NULL && Auth::user()->hasEqualOrGreaterPermissionLevel(8)){
             $user = User::find($user_id);
         }else{$user = Auth::user();}
