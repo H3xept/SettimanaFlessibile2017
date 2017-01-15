@@ -121,7 +121,7 @@ $usr = Auth::user()->username;
 		        <p>{{$course->ref}}</p>
 		        <hr>
 
-		        <form id="{{$course->id}}form" action="/courses/{{$course->id}}/sign" method="POST">
+		        <form id="{{$course->id}}form" action="/courses/{{$course->id}}/sign/" method="POST">
 		        {{csrf_field()}}
 		        	@if($course->type == 1)
 		        	<div align="center">
@@ -212,7 +212,7 @@ $usr = Auth::user()->username;
 	if(($behalf_user != 'undefined') && $user_permission != 'undefined'){
 		var url = "/courses/{{$course->id}}/sign/{{$behalf_user}}";
 	}else{
-    	var url = "/courses/{{$course->id}}/sign";
+    	var url = "/courses/{{$course->id}}/sign/";
 	}
 	console.log("MA DIOCANE");
     $.ajax({
