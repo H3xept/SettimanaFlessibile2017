@@ -27,7 +27,7 @@ Route::get('/courses', function () {
     return view('home.courses')->with(['courses'=>$courses]);
 })->middleware('auth')->name('courses');
 
-Route::post('/courses/{course_id}/sign/{user_id?}',['uses'=>'UsersController@sign'])->middleware('auth')->name('sign');
+Route::get('/courses/{course_id}/sign/{user_id?}',['uses'=>'UsersController@sign'])->middleware('auth')->name('sign');
 Route::get('/courses/{course_id}/{session_number}/unsign/{user_id?}',['uses'=>'UsersController@unsign'])->middleware('auth')->name('unsign');
 
 
