@@ -20,6 +20,7 @@ class UsersInstaller extends Migration
             $table->string('username')->unique();
             $table->string('class');
             $table->string('password');
+            $table->string('refin')->nullable();
             $table->timestamps();
         });
     }

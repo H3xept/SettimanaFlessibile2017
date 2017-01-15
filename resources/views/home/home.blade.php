@@ -33,6 +33,15 @@ foreach($sessions as $key=>$session){
 foreach ($sessions as $key => $value) {
     $courses_name_array[$value['sessionNumber']] = $value['name'];
 }
+$refin = Auth::user()->refin;
+if($refin != null){
+    $refin = explode(",",$refin);
+    $refin_courses = [];
+    foreach ($refin as $refin_number) {
+        $course = DB::table('courses')->where('id',$refin_number)->select('name','desc','ref')->get()->first();
+    }
+
+}
 ?>
 
 

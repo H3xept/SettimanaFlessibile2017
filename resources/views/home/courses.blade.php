@@ -27,6 +27,7 @@ function shouldBeDisabled($ret){
 }
 $behalf_user = NULL;
 $user_permission = NULL;
+$usr = Auth::user()->username;
 ?>
 
 @if(isset($_GET['behalf_user']))
@@ -55,6 +56,12 @@ $user_permission = NULL;
     ?>
     
 @foreach($courses as $course)
+<?php $form_ref = explode(", ",$course->ref); $ref_names = array(); foreach ($form_ref as $ref ) {
+	str_replace(" ", "", $ref);
+	$ref = strtolower($ref);
+	$ref_names[] = $ref;
+}?>
+@if(!in_array($usr,$ref_names))
 	<div id="list-id" class="jumbotron" style="  border-color: #CCCCCC;border-width: 1px;border-style:solid; padding-top:8px; padding-bottom:16px;">
 		<h3>{{$course->name}} <small>{{$course->ref}}</small></h3>
 		<hr>
@@ -257,6 +264,7 @@ $user_permission = NULL;
 		</div>
 
 	</div>
+@endif
 @endforeach
 @endsection
 

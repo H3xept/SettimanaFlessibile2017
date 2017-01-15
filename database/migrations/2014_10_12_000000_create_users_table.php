@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->smallInteger('f7')->nullable();
             $table->smallInteger('f8')->nullable();
             $table->smallInteger('f9')->nullable();
+            $table->string('refin')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
